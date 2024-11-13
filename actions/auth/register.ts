@@ -61,9 +61,9 @@ export async function registerAction(
     await createSession({ jwt });
     redirect("/home");
   } catch (error: any) {
-    // if (error?.message === "NEXT_REDIRECT") {
-    //   throw error;
-    // }
+    if (error?.message === "NEXT_REDIRECT") {
+      throw error;
+    }
 
     const dataError = error.response.data as DataError;
     const errorMessages = Array.isArray(dataError.message)
