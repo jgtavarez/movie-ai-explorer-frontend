@@ -1,0 +1,79 @@
+"use server";
+import { AuthResponse, RegisterInput } from "@/interfaces/auth";
+import { createSession } from "@/lib/auth";
+import { baseApi, DataError } from "@/lib/axios";
+import { redirect } from "next/navigation";
+import { z } from "zod";
+
+const REGISTER_SCHEMA = z
+  .object({
+    name: z.string().trim().min(1, { message: "Required" }),
+    email: z.string().email({ message: "Invalid email" }).trim(),
+    password: z
+      .string()
+      .min(8, { message: "Minimum 8 characters long" })
+      .regex(/[a-zA-Z]/, { message: "Contain at least one letter" })
+      .regex(/[0-9]/, { message: "Contain at least one number" })
+      .regex(/[^a-zA-Z0-9]/, {
+        message: "Contain at least one special character",
+      })
+      .trim(),
+    confirmPassword: z.string().trim(),
+  })
+  .superRefine(({ confirmPassword, password }, ctx) => {
+    if (confirmPassword !== password) {
+      ctx.addIssue({
+        code: "custom",
+        message: "The passwords did not match",
+        path: ["confirmPassword"],
+      });
+    }
+  });
+
+export const registerApiCall = async (
+  registerInput: RegisterInput
+): Promise<AuthResponse> => {
+  const response = await baseApi.post("/auth/register", registerInput);
+  return response.data;
+};
+
+export async function registerAction(
+  prevState: string | undefined,
+  formData: FormData
+): Promise<any> {
+  const parsedCredentials = REGISTER_SCHEMA.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+    confirmPassword: formData.get("confirmPassword"),
+  });
+
+  if (!parsedCredentials.success) {
+    return {
+      errors: parsedCredentials.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    const { jwt } = await registerApiCall({
+      ...parsedCredentials.data,
+    });
+    await createSession({ jwt });
+    redirect("/home");
+  } catch (error: any) {
+    // if (error?.message === "NEXT_REDIRECT") {
+    //   throw error;
+    // }
+
+    const dataError = error.response.data as DataError;
+    const errorMessages = Array.isArray(dataError.message)
+      ? dataError.message
+      : [dataError.message];
+
+    return {
+      errors: {
+        customs: errorMessages,
+      },
+    };
+  }
+}

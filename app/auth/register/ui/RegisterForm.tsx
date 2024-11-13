@@ -1,16 +1,32 @@
 "use client";
-import { loginAction } from "@/actions/auth/login";
+import { registerAction } from "@/actions/auth/register";
 import { ErrorsList } from "@/components/ErrorsList";
 import { Button, Input, Label } from "@/components/ui";
 import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 
-export const LoginForm = () => {
-  const [state, action] = useFormState(loginAction, undefined);
+export const RegisterForm = () => {
+  const [state, action] = useFormState(registerAction, undefined);
 
   return (
     <div className="mt-8">
       <form action={action}>
+        {/* Name */}
+        <div>
+          <Label
+            htmlFor="name"
+            text="Full Name"
+            className="text-sm text-gray-600 dark:text-gray-200"
+          />
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Your Full Name"
+            errors={state?.errors?.name}
+          />
+        </div>
+
         {/* Email */}
         <div>
           <Label
@@ -43,18 +59,34 @@ export const LoginForm = () => {
           />
         </div>
 
+        {/* Confirm Password */}
+        <div>
+          <Label
+            htmlFor="confirmPassword"
+            text="Confirm Password"
+            className="text-sm text-gray-600 dark:text-gray-200"
+          />
+          <Input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm Your Password"
+            errors={state?.errors?.confirmPassword}
+          />
+        </div>
+
         {/* Button */}
         <InputSubmit />
 
         {state?.errors?.customs && <ErrorsList errors={state.errors.customs} />}
       </form>
       <p className="mt-6 text-sm text-center text-gray-400">
-        Don&apos;t have an account yet?
+        Do you already have an account?
         <Link
-          href={"register"}
+          href={"login"}
           className="text-blue-500 focus:outline-none focus:underline hover:underline ml-2"
         >
-          Sign up
+          Sign in
         </Link>
       </p>
     </div>
@@ -66,7 +98,7 @@ export function InputSubmit() {
 
   return (
     <div className="mt-6">
-      <Button text="Sign in" id="submit" type="submit" disabled={pending} />
+      <Button text="Sign up" id="submit" type="submit" disabled={pending} />
     </div>
   );
 }

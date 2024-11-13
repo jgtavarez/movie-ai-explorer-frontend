@@ -1,5 +1,5 @@
 "use server";
-import { AuthResponse } from "@/interfaces/auth";
+import { AuthResponse, LoginInput } from "@/interfaces/auth";
 import { createSession } from "@/lib/auth";
 import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
@@ -11,13 +11,9 @@ const LOGIN_SCHEMA = z.object({
 });
 
 export const loginApiCall = async (
-  email: string,
-  password: string
+  loginInput: LoginInput
 ): Promise<AuthResponse> => {
-  const response = await baseApi.post("/auth/login", {
-    email,
-    password,
-  });
+  const response = await baseApi.post("/auth/login", loginInput);
   return response.data;
 };
 
@@ -36,10 +32,8 @@ export async function loginAction(
     };
   }
 
-  const { email, password } = parsedCredentials.data;
-
   try {
-    const { jwt } = await loginApiCall(email, password);
+    const { jwt } = await loginApiCall({ ...parsedCredentials.data });
     await createSession({ jwt });
     redirect("/home");
   } catch (error: any) {
