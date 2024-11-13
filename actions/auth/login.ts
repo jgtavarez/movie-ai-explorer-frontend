@@ -1,12 +1,12 @@
 "use server";
 import { AuthResponse } from "@/interfaces/auth";
 import { createSession } from "@/lib/auth";
-import { baseApi } from "@/lib/axios";
+import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 const LOGIN_SCHEMA = z.object({
-  email: z.string().email({ message: "Invalid email." }).trim(),
+  email: z.string().email({ message: "Invalid email" }).trim(),
   password: z.string().trim().min(1, { message: "Required" }),
 });
 
@@ -43,14 +43,18 @@ export async function loginAction(
     await createSession({ jwt });
     redirect("/home");
   } catch (error: any) {
-    console.log(error);
+    // if (error?.message === "NEXT_REDIRECT") {
+    //   throw error;
+    // }
 
-    if (error?.message === "NEXT_REDIRECT") {
-      throw error;
-    }
+    const dataError = error.response.data as DataError;
+    const errorMessages = Array.isArray(dataError.message)
+      ? dataError.message
+      : [dataError.message];
+
     return {
       errors: {
-        customs: ["ssds"],
+        customs: errorMessages,
       },
     };
   }

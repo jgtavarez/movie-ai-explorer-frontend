@@ -31,7 +31,7 @@ export async function createSession(payload: CookiesPayload) {
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
   const session = await encrypt({ ...payload }, expires);
 
-  (await cookies()).set("session", session, {
+  cookies().set("session", session, {
     httpOnly: true,
     secure: true,
     expires,
@@ -40,12 +40,12 @@ export async function createSession(payload: CookiesPayload) {
   });
 }
 
-export async function deleteSession() {
-  (await cookies()).delete("session");
+export function deleteSession() {
+  cookies().delete("session");
 }
 
 export const verifySession = cache(async () => {
-  const cookie = (await cookies()).get("session")?.value;
+  const cookie = cookies().get("session")?.value;
   const session = await decrypt(cookie);
 
   if (!session?.jwt) {
