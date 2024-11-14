@@ -15,7 +15,7 @@ export const CustomLink = ({ text, href }: Props) => {
       <a
         href={href}
         className={`block py-2 pr-4 pl-3 ${
-          pathname === href ? "text-blue-500" : "text-gray-600 dark:text-white"
+          pathname === href ? "text-blue-500" : "text-gray-400 dark:text-white"
         } lg:p-0`}
       >
         {text}

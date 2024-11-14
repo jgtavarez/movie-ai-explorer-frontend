@@ -2,15 +2,17 @@ import { MovieCard } from "./ui/MovieCard";
 import { Search } from "@/components/Search";
 import { getMovies } from "@/actions/movies";
 import { Alert } from "@/components/Alert";
+import { Pagination } from "@/components/Pagination";
 
 export default async function MoviesPage({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { search = "avenger" } = await searchParams;
-  const movies = await getMovies({
+  const { search = "avenger", page = "1" } = await searchParams;
+  const { movies, totalResults } = await getMovies({
     search,
+    page,
   });
 
   return (
@@ -29,6 +31,7 @@ export default async function MoviesPage({
                 <MovieCard key={movie.imdbID} movie={movie} />
               ))}
             </div>
+            <Pagination totalResults={totalResults} />
           </>
         ) : (
           <Alert

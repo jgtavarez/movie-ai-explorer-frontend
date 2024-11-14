@@ -1,39 +1,37 @@
 "use server";
 import { MovieResp, MovieSearch, MoviesResp } from "@/interfaces/api";
 import { GetAllMoviesParams } from "@/interfaces/entities/MovieEntity";
+import { authFetch } from "@/lib/api";
 import { notFound } from "next/navigation";
 
 export const getMovies = async (
   getAllMoviesParams: GetAllMoviesParams
-): Promise<MovieSearch[]> => {
-  const { search } = getAllMoviesParams;
+): Promise<{
+  movies: MovieSearch[];
+  totalResults: number;
+}> => {
+  const { search, page } = getAllMoviesParams;
   const params = new URLSearchParams({
     search,
+    page,
   }).toString();
 
-  const data: MoviesResp = await fetch(
-    `${process.env.SERVER_URL}/movies?${params}`,
-    {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNmVmNTVjLTE4MTUtNDY2YS04NmY2LTUxYjUyMTM3YWYwZiIsImlhdCI6MTczMTUzOTY2MCwiZXhwIjoxNzMxNjI2MDYwfQ.eUe-VbxikW65CsQUsSfm5du25wdz3aU_9oEZAJFEHVo",
-      },
-    }
+  const data: MoviesResp = await authFetch(
+    `${process.env.SERVER_URL}/movies?${params}`
   ).then((res) => res.json());
 
-  return data?.Search || [];
+  return {
+    movies: data?.Search || [],
+    totalResults: +data?.totalResults || 0,
+  };
 };
 
 export const getMovie = async (id: string): Promise<MovieResp> => {
-  const data: MovieResp = await fetch(
+  const data: MovieResp = await authFetch(
     `${process.env.SERVER_URL}/movies/${id}`,
     {
       next: {
         revalidate: 60 * 60 * 24, //24h
-      },
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNmVmNTVjLTE4MTUtNDY2YS04NmY2LTUxYjUyMTM3YWYwZiIsImlhdCI6MTczMTUzOTY2MCwiZXhwIjoxNzMxNjI2MDYwfQ.eUe-VbxikW65CsQUsSfm5du25wdz3aU_9oEZAJFEHVo",
       },
     }
   ).then((resp) => {
@@ -50,14 +48,8 @@ export const getRecommendedMovies = async (): Promise<MovieSearch[]> => {
   const params = new URLSearchParams({
     search: "music",
   }).toString();
-  const data: MoviesResp = await fetch(
-    `${process.env.SERVER_URL}/movies?${params}`,
-    {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNmVmNTVjLTE4MTUtNDY2YS04NmY2LTUxYjUyMTM3YWYwZiIsImlhdCI6MTczMTUzOTY2MCwiZXhwIjoxNzMxNjI2MDYwfQ.eUe-VbxikW65CsQUsSfm5du25wdz3aU_9oEZAJFEHVo",
-      },
-    }
+  const data: MoviesResp = await authFetch(
+    `${process.env.SERVER_URL}/movies?${params}`
   ).then((res) => res.json());
 
   return data.Search;
