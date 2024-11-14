@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { verifySession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
@@ -9,8 +10,13 @@ export default async function AuthLayout({
   const session = await verifySession();
 
   if (!session?.jwt) {
-    redirect("/login");
+    redirect("/auth/login");
   }
 
-  return <div>{children}</div>;
+  return (
+    <main>
+      <Header />
+      {children}
+    </main>
+  );
 }
