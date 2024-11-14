@@ -16,7 +16,7 @@ export const Pagination = ({ totalResults }: Props) => {
         <ul className="flex list-style-none">
           <li className="page-item">
             <Link
-              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+              className="pagination-no-selected"
               href={createPageUrl(currentPage - 1)}
             >
               <h1>{`<`}</h1>
@@ -27,9 +27,9 @@ export const Pagination = ({ totalResults }: Props) => {
             <li key={page} className="page-item">
               <Link
                 className={clsx(
-                  "page-link relative block py-1.5 px-3 border-0 outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none",
+                  "pagination-no-selected",
                   {
-                    "bg-blue-500 shadow-sm text-white hover:text-white hover:bg-blue-600":
+                    "bg-blue-500 dark:hover:bg-blue-500 text-white dark:text-white hover:bg-blue-600":
                       page === currentPage,
                   }
                 )}
@@ -42,7 +42,7 @@ export const Pagination = ({ totalResults }: Props) => {
 
           <li className="page-item">
             <Link
-              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+              className="pagination-no-selected"
               href={createPageUrl(currentPage + 1)}
             >
               <h1>{`>`}</h1>

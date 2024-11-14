@@ -19,7 +19,7 @@ export const ExtraRating = ({ source, score }: Props) => {
   if (!isNaN(numericScore)) {
     return (
       <div>
-        <p className="text-3xl tracking-tight text-gray-900">{source}</p>
+        <p className="text-3xl tracking-tight title-theme">{source}</p>
         <div className="mt-3">
           <div className="flex items-center">
             <StarsRating

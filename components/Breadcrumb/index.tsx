@@ -26,7 +26,7 @@ export const Breadcrumb = ({ crumbs }: Props) => {
             <li key={crumb.text} className="text-sm">
               <span
                 aria-current="page"
-                className="font-medium text-gray-500 hover:text-gray-600"
+                className="text-sm font-medium text-gray-500 dark:text-gray-400"
               >
                 {crumb.text}
               </span>
@@ -36,7 +36,7 @@ export const Breadcrumb = ({ crumbs }: Props) => {
               <div className="flex items-center">
                 <a
                   href={crumb.href}
-                  className="mr-2 text-sm font-medium text-gray-900"
+                  className="mr-2 text-sm font-bold dark:text-white"
                 >
                   {crumb.text}
                 </a>

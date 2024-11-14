@@ -5,6 +5,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { RecommendationsMovies } from "./ui/RecommendationsMovies";
 import { Ul } from "@/components/ui/Ul";
 import { getMovie } from "@/actions/movies";
+import { Button } from "@/components/ui";
 
 interface Props {
   params: { id: string };
@@ -31,7 +32,7 @@ export default async function MoviePage({ params }: Props) {
   const movie = await getMovie(params.id);
 
   return (
-    <section className="pt-10 sm:pt-16 bg-white">
+    <section className="pt-10 sm:pt-16">
       <Breadcrumb
         crumbs={[
           {
@@ -65,7 +66,7 @@ export default async function MoviePage({ params }: Props) {
 
       <div className="mx-auto max-w-2xl px-4 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16">
         <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl title-theme">
             {movie.Title}
           </h1>
         </div>
@@ -79,14 +80,14 @@ export default async function MoviePage({ params }: Props) {
           <form className="mt-10">
             {/* More Ratings */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900">
-                More Ratings
-              </h3>
+              <h3 className="text-sm font-bold title-theme">More Ratings</h3>
               <div className="mt-4">
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
                   {movie.Ratings.map((ratings) => (
                     <li key={ratings.Source} className="text-gray-400">
-                      <span className="text-gray-600">{ratings.Source}</span>
+                      <span className="description-theme">
+                        {ratings.Source}
+                      </span>
                       <span className="ml-3 text-sm font-medium text-teal-600 hover:text-cyan-500">
                         {ratings.Value}
                       </span>
@@ -98,7 +99,7 @@ export default async function MoviePage({ params }: Props) {
 
             {/* Director */}
             <div className="mt-5">
-              <h3 className="text-sm font-medium text-gray-900">Director</h3>
+              <h3 className="text-sm font-bold title-theme">Director</h3>
               <div className="mt-4">
                 <Ul
                   lists={movie.Director.split(",").map((director) => director)}
@@ -108,7 +109,7 @@ export default async function MoviePage({ params }: Props) {
 
             {/* Writer */}
             <div className="mt-5">
-              <h3 className="text-sm font-medium text-gray-900">Writer</h3>
+              <h3 className="text-sm font-bold title-theme">Writer</h3>
               <div className="mt-4">
                 <Ul lists={movie.Writer.split(",").map((writer) => writer)} />
               </div>
@@ -116,34 +117,29 @@ export default async function MoviePage({ params }: Props) {
 
             {/* Actors */}
             <div className="mt-5">
-              <h3 className="text-sm font-medium text-gray-900">Actors</h3>
+              <h3 className="text-sm font-bold title-theme">Actors</h3>
               <div className="mt-4">
                 <Ul lists={movie.Actors.split(",").map((actors) => actors)} />
               </div>
             </div>
 
-            <button
-              type="submit"
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-800 px-8 py-3 text-base font-medium text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-            >
-              Add to favorite
-            </button>
+            <Button text="Add to favorite" className="mt-10" />
           </form>
         </div>
 
         <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
           <div>
             <div className="space-y-6">
-              <p className="text-base text-gray-900">{movie.Plot}</p>
+              <p className="text-base description-theme">{movie.Plot}</p>
             </div>
           </div>
           <div className="mt-10">
-            <h3 className="text-sm font-medium text-gray-900">Genre</h3>
+            <h3 className="text-sm font-bold title-theme">Genre</h3>
             <div className="mt-4">
               <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
                 {movie.Genre.split(",").map((genre) => (
-                  <li key={genre} className="text-gray-400">
-                    <span className="text-gray-600">{genre}</span>
+                  <li key={genre} className="description-theme">
+                    <span>{genre}</span>
                   </li>
                 ))}
               </ul>
@@ -151,14 +147,11 @@ export default async function MoviePage({ params }: Props) {
           </div>
 
           <section aria-labelledby="shipping-heading" className="mt-10">
-            <h2
-              id="shipping-heading"
-              className="text-sm font-medium text-gray-900"
-            >
+            <h2 id="shipping-heading" className="text-sm font-bold title-theme">
               Details
             </h2>
             <div className="mt-4 space-y-6">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm description-theme">
                 {`This movie was released on ${movie.Year} with a rating of ${movie.Rated} and a runtime of ${movie.Runtime}. It's available in languages like (${movie.Language}) and was produced in ${movie.Country}. The film has earned ${movie.Awards}.`}
               </p>
             </div>
@@ -174,7 +167,100 @@ export default async function MoviePage({ params }: Props) {
               Reviews
             </h2>
 
-            
+            <div className="space-y-10">
+              <div className="flex flex-col sm:flex-row">
+                <div className="order-2 mt-6 sm:ml-16 sm:mt-0">
+                  <h3 className="text-sm font-medium text-gray-900">
+                    This is the best white t-shirt out there
+                  </h3>
+                  <div className="mt-3 space-y-6 text-sm text-gray-600">
+                    <p>
+                      I&apos;ve searched my entire life for a t-shirt that
+                      reflects every color in the visible spectrum. Scientists
+                      said it couldn&apos;t be done, but when I look at this
+                      shirt, I see white light bouncing right back into my eyes.
+                      Incredible!
+                    </p>
+                  </div>
+                </div>
+
+                <div className="order-1 flex items-center sm:flex-col sm:items-start">
+                  <img
+                    src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixqx=oilqXxSqey&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt="Mark Edwards."
+                    className="h-12 w-12 rounded-full"
+                  />
+
+                  <div className="ml-4 sm:ml-0 sm:mt-4">
+                    <p className="text-sm font-medium text-gray-900">
+                      Mark Edwards
+                    </p>
+                    <div className="mt-2 flex items-center">
+                      <svg
+                        className="text-gray-900 h-5 w-5 flex-shrink-0"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <svg
+                        className="text-gray-900 h-5 w-5 flex-shrink-0"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <svg
+                        className="text-gray-900 h-5 w-5 flex-shrink-0"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <svg
+                        className="text-gray-900 h-5 w-5 flex-shrink-0"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <svg
+                        className="text-gray-900 h-5 w-5 flex-shrink-0"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
         </div>
       </div>
