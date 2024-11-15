@@ -14,6 +14,10 @@ export const Header = () => {
       text: "Blogs",
       href: "/home/blogs",
     },
+    {
+      text: "Favorites",
+      href: "/home/favorites",
+    },
   ];
 
   return (

@@ -14,7 +14,7 @@ export const Pagination = ({ totalResults }: Props) => {
     <div className="flex text-center justify-center mt-10 mb-32">
       <nav aria-label="pagination">
         <ul className="flex list-style-none">
-          <li className="page-item">
+          <li>
             <Link
               className="pagination-no-selected"
               href={createPageUrl(currentPage - 1)}
@@ -24,15 +24,12 @@ export const Pagination = ({ totalResults }: Props) => {
           </li>
 
           {allPages.map((page) => (
-            <li key={page} className="page-item">
+            <li key={page}>
               <Link
-                className={clsx(
-                  "pagination-no-selected",
-                  {
-                    "bg-blue-500 dark:hover:bg-blue-500 text-white dark:text-white hover:bg-blue-600":
-                      page === currentPage,
-                  }
-                )}
+                className={clsx("pagination-no-selected", {
+                  "bg-blue-500 dark:hover:bg-blue-500 text-white dark:text-white hover:bg-blue-600":
+                    page === currentPage,
+                })}
                 href={createPageUrl(page)}
               >
                 {page}
@@ -40,7 +37,7 @@ export const Pagination = ({ totalResults }: Props) => {
             </li>
           ))}
 
-          <li className="page-item">
+          <li>
             <Link
               className="pagination-no-selected"
               href={createPageUrl(currentPage + 1)}

@@ -55,10 +55,11 @@ export default async function MoviePage({ params }: Props) {
           {movie.Poster !== "N/A" ? (
             <Image
               src={movie.Poster}
+              alt={movie.Title}
               width={300}
               height={400}
-              alt={movie.Title}
-              className="h-full w-full object-cover object-center"
+              className="rounded-2xl transition-transform duration-300 transform group-hover:scale-105 object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : null}
         </div>

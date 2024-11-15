@@ -1,6 +1,6 @@
 "use server";
 import { MovieResp, MovieSearch, MoviesResp } from "@/interfaces/api";
-import { GetAllMoviesParams } from "@/interfaces/entities/MovieEntity";
+import { GetAllMoviesParams } from "@/interfaces/entities/Movie";
 import { authFetch } from "@/lib/api";
 import { notFound } from "next/navigation";
 

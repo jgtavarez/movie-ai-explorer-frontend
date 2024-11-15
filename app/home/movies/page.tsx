@@ -3,6 +3,7 @@ import { Search } from "@/components/Search";
 import { getMovies } from "@/actions/movies";
 import { Alert } from "@/components/Alert";
 import { Pagination } from "@/components/Pagination";
+import { CardsGrid } from "@/components/CardsGrid";
 
 export default async function MoviesPage({
   searchParams,
@@ -21,16 +22,11 @@ export default async function MoviesPage({
         <Search />
         {movies.length ? (
           <>
-            <div className="grid gap-10 md:grid-cols-2 lg:gap-10 mt-6 lg:mt-8">
-              {movies.slice(0, 2).map((movie) => (
+            <CardsGrid>
+              {movies.map((movie) => (
                 <MovieCard key={movie.imdbID} movie={movie} />
               ))}
-            </div>
-            <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-              {movies.slice(2, movies.length).map((movie) => (
-                <MovieCard key={movie.imdbID} movie={movie} />
-              ))}
-            </div>
+            </CardsGrid>
             <Pagination totalResults={totalResults} />
           </>
         ) : (

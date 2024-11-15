@@ -1,6 +1,5 @@
-import { NoImage } from "@/components/NoImage";
+import { MovieImage } from "@/components/MovieImage";
 import { MovieSearch } from "@/interfaces/api";
-import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
@@ -12,24 +11,16 @@ export const MovieCard = ({ movie }: Props) => {
     <div className="group cursor-pointer">
       <div className="overflow-hidden rounded-md bg-gray-300 transition-all hover:scale-105">
         <Link
-          className={`relative block aspect-square`}
+          className="relative block aspect-square"
           href={`/home/movies/${movie.imdbID}`}
         >
-          {movie.Poster !== "N/A" ? (
-            <div className="relative w-full h-full">
-              <Image
-                key={movie.imdbID}
-                src={movie.Poster}
-                alt={movie.Title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
-                priority={false}
-              />
-            </div>
-          ) : (
-            <NoImage />
-          )}
+          <MovieImage
+            src={movie.Poster}
+            alt={movie.Title}
+            fill
+            className="rounded-2xl transition-transform duration-300 transform group-hover:scale-105 object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </Link>
       </div>
       <div>
