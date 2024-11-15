@@ -14,7 +14,7 @@ export const useSearch = () => {
       params.delete("search");
     }
     replace(`${pathName}?${params.toString()}`);
-  }, 600);
+  }, 500);
 
   return {
     handleSearch,

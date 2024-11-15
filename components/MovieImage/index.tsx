@@ -1,7 +1,6 @@
 import Image, { ImageProps } from "next/image";
-import React from "react";
 
-interface Props extends ImageProps {}
+type Props = ImageProps
 
 export const MovieImage = ({ ...props }: Props) => {
   return (

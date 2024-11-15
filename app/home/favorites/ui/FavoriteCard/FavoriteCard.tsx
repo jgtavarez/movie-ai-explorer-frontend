@@ -1,4 +1,8 @@
+"use client";
+import { deleteFavorite } from "@/actions/favorites";
+import { Modal } from "@/components/Modal";
 import { MovieImage } from "@/components/MovieImage";
+import { useModal } from "@/hooks/useModal";
 import { Favorite } from "@/interfaces/entities/Favorite";
 import { formatDate } from "@/lib/time";
 import Link from "next/link";
@@ -8,6 +12,8 @@ interface Props {
 }
 
 export const FavoriteCard = ({ favorite }: Props) => {
+  const { open, setOpen } = useModal();
+
   return (
     <article className="bg-white dark:bg-slate-800 p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
       <div className="relative mb-4 rounded-2xl overflow-hidden h-80">
@@ -18,18 +24,21 @@ export const FavoriteCard = ({ favorite }: Props) => {
           className="rounded-2xl transition-transform duration-300 transform group-hover:scale-105 object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-white p-2 shadow-md z-50">
+        <div
+          className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-white p-2 shadow-md z-50"
+          onClick={() => setOpen(true)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
-            className="h-5 w-5 text-red-700"
+            className={`h-5 w-5 text-red-700`}
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
             ></path>
           </svg>
@@ -47,9 +56,9 @@ export const FavoriteCard = ({ favorite }: Props) => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M13 5l7 7-7 7M5 5l7 7-7 7"
             ></path>
           </svg>
@@ -79,9 +88,9 @@ export const FavoriteCard = ({ favorite }: Props) => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1"
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
               ></path>
             </svg>
@@ -96,7 +105,17 @@ export const FavoriteCard = ({ favorite }: Props) => {
           {favorite.movie.title}
         </a>
       </h3>
-      <div></div>
+      {open && (
+        <Modal
+          onCancel={() => {
+            setOpen(false);
+          }}
+          onConfirm={async () => {
+            await deleteFavorite(favorite.id);
+            setOpen(false);
+          }}
+        />
+      )}
     </article>
   );
 };
