@@ -1,5 +1,5 @@
-import { scoreToStars } from "../../../../../../lib/math";
-import { StarsRating } from "../StarsRating";
+import { scoreToStars } from "@/lib/math";
+import { GenerateStars } from "./GenerateStars";
 
 interface Props {
   source: "Metascore" | "IMDb Rating";
@@ -13,7 +13,7 @@ const handleSourceScoreBase = (source: Props["source"]) => {
   return 10;
 };
 
-export const ExtraRating = ({ source, score }: Props) => {
+export const Rating = ({ source, score }: Props) => {
   const numericScore = parseFloat(score);
 
   if (!isNaN(numericScore)) {
@@ -22,7 +22,7 @@ export const ExtraRating = ({ source, score }: Props) => {
         <p className="text-3xl tracking-tight title-theme">{source}</p>
         <div className="mt-3">
           <div className="flex items-center">
-            <StarsRating
+            <GenerateStars
               stars={scoreToStars(numericScore, handleSourceScoreBase(source))}
             />
             <span className="ml-3 text-sm font-medium text-teal-600 hover:text-cyan-500">

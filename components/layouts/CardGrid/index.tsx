@@ -4,7 +4,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const CardsGrid = ({ children }: Props) => {
+export const CardGrid = ({ children }: Props) => {
   const childrenArray = React.Children.toArray(children);
 
   return (

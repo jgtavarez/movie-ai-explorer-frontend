@@ -1,10 +1,8 @@
 import Image from "next/image";
-import { ExtraRating } from "./ui/ExtraRating";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { RecommendationsMovies } from "./ui/RecommendationsMovies";
-import { Ul } from "@/components/ui/Ul";
 import { getMovie } from "@/actions/movies";
-import { ToggleFavorite } from "./ui/ToggleFavorite";
+import { SecondaryColumn } from "./ui/SecondaryColumn";
+import { RecommendedMovies } from "./ui/RecommendedMovies";
 
 interface Props {
   params: { id: string };
@@ -32,6 +30,7 @@ export default async function MoviePage({ params }: Props) {
 
   return (
     <section className="pt-10 sm:pt-16">
+      {/* Breadcrumb */}
       <Breadcrumb
         crumbs={[
           {
@@ -48,6 +47,7 @@ export default async function MoviePage({ params }: Props) {
           },
         ]}
       />
+
       {/* Photo */}
       <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
         <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
@@ -71,61 +71,7 @@ export default async function MoviePage({ params }: Props) {
           </h1>
         </div>
 
-        <div className="mt-4 lg:row-span-3 lg:mt-0">
-          <div className="flex flex-col gap-6">
-            <ExtraRating source="Metascore" score={movie.Metascore} />
-            <ExtraRating source="IMDb Rating" score={movie.imdbRating} />
-          </div>
-
-          <div className="mt-10">
-            {/* More Ratings */}
-            <div>
-              <h3 className="text-sm font-bold title-theme">More Ratings</h3>
-              <div className="mt-4">
-                <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  {movie.Ratings.map((ratings) => (
-                    <li key={ratings.Source} className="text-gray-400">
-                      <span className="description-theme">
-                        {ratings.Source}
-                      </span>
-                      <span className="ml-3 text-sm font-medium text-teal-600 hover:text-cyan-500">
-                        {ratings.Value}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Director */}
-            <div className="mt-5">
-              <h3 className="text-sm font-bold title-theme">Director</h3>
-              <div className="mt-4">
-                <Ul
-                  lists={movie.Director.split(",").map((director) => director)}
-                />
-              </div>
-            </div>
-
-            {/* Writer */}
-            <div className="mt-5">
-              <h3 className="text-sm font-bold title-theme">Writer</h3>
-              <div className="mt-4">
-                <Ul lists={movie.Writer.split(",").map((writer) => writer)} />
-              </div>
-            </div>
-
-            {/* Actors */}
-            <div className="mt-5">
-              <h3 className="text-sm font-bold title-theme">Actors</h3>
-              <div className="mt-4">
-                <Ul lists={movie.Actors.split(",").map((actors) => actors)} />
-              </div>
-            </div>
-
-            <ToggleFavorite imdb_id={movie.imdbID} />
-          </div>
-        </div>
+        <SecondaryColumn movie={movie} />
 
         <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
           <div>
@@ -158,15 +104,9 @@ export default async function MoviePage({ params }: Props) {
           </section>
         </div>
 
+        {/* Column */}
         <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <section
-            aria-labelledby="reviews-heading"
-            className="border-t border-gray-200 pt-10 lg:pt-16"
-          >
-            <h2 id="reviews-heading" className="sr-only">
-              Reviews
-            </h2>
-
+          <section className="border-t border-gray-200 pt-10 lg:pt-16">
             <div className="space-y-10">
               <div className="flex flex-col sm:flex-row">
                 <div className="order-2 mt-6 sm:ml-16 sm:mt-0">
@@ -264,7 +204,12 @@ export default async function MoviePage({ params }: Props) {
           </section>
         </div>
       </div>
-      <RecommendationsMovies />
+
+      {/* Recommended Movies */}
+      <div className="mx-auto px-4 lg:max-w-7xl mt-14 mb-12">
+        <hr />
+      </div>
+      <RecommendedMovies />
     </section>
   );
 }

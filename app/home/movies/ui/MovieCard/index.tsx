@@ -9,6 +9,7 @@ interface Props {
 export const MovieCard = ({ movie }: Props) => {
   return (
     <div className="group cursor-pointer">
+      {/* Image */}
       <div className="overflow-hidden rounded-md bg-gray-300 transition-all hover:scale-105">
         <Link
           className="relative block aspect-square"
@@ -23,6 +24,7 @@ export const MovieCard = ({ movie }: Props) => {
           />
         </Link>
       </div>
+      {/* Content */}
       <div>
         <div className="flex gap-3">
           <span className="inline-block text-xs font-medium tracking-wider uppercase mt-5 text-blue-600">
