@@ -44,6 +44,8 @@ export interface MovieResp {
   Production: string;
   Website: string;
   Response: string;
+  // Custom
+  favorite: boolean;
 }
 
 export interface Rating {

@@ -1,8 +1,7 @@
 "use client";
-import { deleteFavorite } from "@/actions/favorites";
-import { Modal } from "@/components/Modal";
+import { toggleFavorite } from "@/actions/favorites";
 import { MovieImage } from "@/components/MovieImage";
-import { useModal } from "@/hooks/useModal";
+import { useOptimistic } from "@/hooks/useOptimistic";
 import { Favorite } from "@/interfaces/entities/Favorite";
 import { formatDate } from "@/lib/time";
 import Link from "next/link";
@@ -12,7 +11,8 @@ interface Props {
 }
 
 export const FavoriteCard = ({ favorite }: Props) => {
-  const { open, setOpen } = useModal();
+  const [optimisticFavorite, setOptimisticFavorite, handleOptimisticUpdate] =
+    useOptimistic(true);
 
   return (
     <article className="bg-white dark:bg-slate-800 p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
@@ -26,7 +26,12 @@ export const FavoriteCard = ({ favorite }: Props) => {
         />
         <div
           className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-white p-2 shadow-md z-50"
-          onClick={() => setOpen(true)}
+          onClick={async () => {
+            setOptimisticFavorite((prev) => !prev);
+            await handleOptimisticUpdate(() =>
+              toggleFavorite({ imdb_id: favorite.movie.imdb_id })
+            );
+          }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +39,9 @@ export const FavoriteCard = ({ favorite }: Props) => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className={`h-5 w-5 text-red-700`}
+            className={`h-5 w-5 ${
+              optimisticFavorite ? "text-red-700" : "text-gray-400"
+            } `}
           >
             <path
               strokeLinecap="round"
@@ -105,17 +112,6 @@ export const FavoriteCard = ({ favorite }: Props) => {
           {favorite.movie.title}
         </a>
       </h3>
-      {open && (
-        <Modal
-          onCancel={() => {
-            setOpen(false);
-          }}
-          onConfirm={async () => {
-            await deleteFavorite(favorite.id);
-            setOpen(false);
-          }}
-        />
-      )}
     </article>
   );
 };

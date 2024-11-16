@@ -54,3 +54,8 @@ export const getRecommendedMovies = async (): Promise<MovieSearch[]> => {
 
   return data.Search;
 };
+
+export async function send(message: string) {
+  await new Promise((res) => setTimeout(res, 1000));
+  return message;
+}

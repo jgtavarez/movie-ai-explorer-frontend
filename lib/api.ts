@@ -11,6 +11,7 @@ export async function authFetch(
     headers: {
       ...init?.headers,
       Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
   };
 

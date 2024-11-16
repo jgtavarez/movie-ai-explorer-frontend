@@ -5,7 +5,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { RecommendationsMovies } from "./ui/RecommendationsMovies";
 import { Ul } from "@/components/ui/Ul";
 import { getMovie } from "@/actions/movies";
-import { Button } from "@/components/ui";
+import { ToggleFavorite } from "./ui/ToggleFavorite";
 
 interface Props {
   params: { id: string };
@@ -78,7 +78,7 @@ export default async function MoviePage({ params }: Props) {
             <ExtraRating source="IMDb Rating" score={movie.imdbRating} />
           </div>
 
-          <form className="mt-10">
+          <div className="mt-10">
             {/* More Ratings */}
             <div>
               <h3 className="text-sm font-bold title-theme">More Ratings</h3>
@@ -124,8 +124,8 @@ export default async function MoviePage({ params }: Props) {
               </div>
             </div>
 
-            <Button text="Add to favorite" className="mt-10" />
-          </form>
+            <ToggleFavorite imdb_id={movie.imdbID} />
+          </div>
         </div>
 
         <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

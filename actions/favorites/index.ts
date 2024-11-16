@@ -2,6 +2,7 @@
 import {
   Favorite,
   GetAllFavoritesParams,
+  ToggleFavoriteInput,
 } from "@/interfaces/entities/Favorite";
 import { authFetch } from "@/lib/api";
 
@@ -24,12 +25,24 @@ export const getFavorites = async (
   };
 };
 
-export const deleteFavorite = async (id: string): Promise<Favorite> => {
+export const toggleFavorite = async (
+  toggleFavoriteInput: ToggleFavoriteInput
+): Promise<Favorite> => {
+  const { imdb_id } = toggleFavoriteInput;
   const data: Favorite = await authFetch(
-    `${process.env.SERVER_URL}/favorites/${id}`,
+    `${process.env.SERVER_URL}/favorites`,
     {
-      method: "DELETE",
+      method: "POST",
+      body: JSON.stringify({ imdb_id }),
     }
+  ).then((res) => res.json());
+
+  return data;
+};
+
+export const getFavorite = async (imdb_id: string): Promise<boolean> => {
+  const data: boolean = await authFetch(
+    `${process.env.SERVER_URL}/favorites/${imdb_id}`
   ).then((res) => res.json());
 
   return data;

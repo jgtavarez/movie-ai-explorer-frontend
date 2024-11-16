@@ -127,7 +127,7 @@ export default async function FavoritesPage({
               Try adding one!
             </span>
           </div>
-          <Link href="/home/movies" className="w-full text-center">
+          <Link href="/home/movies" className="w-2/5 text-center">
             <Button text="See Movies" className="w-2/5" />
           </Link>
         </div>

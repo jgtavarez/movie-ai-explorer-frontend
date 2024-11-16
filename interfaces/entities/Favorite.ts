@@ -12,3 +12,7 @@ export interface Favorite extends BaseEntity {
 export interface GetAllFavoritesParams {
   search: string;
 }
+
+export interface ToggleFavoriteInput {
+  imdb_id: string;
+}
