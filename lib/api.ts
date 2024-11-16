@@ -1,5 +1,13 @@
 import { verifySession } from "./auth";
 
+export interface Options {
+  skip: boolean;
+}
+
+export const InitOptions: Options = {
+  skip: false,
+};
+
 export async function authFetch(
   input: RequestInfo,
   init?: RequestInit

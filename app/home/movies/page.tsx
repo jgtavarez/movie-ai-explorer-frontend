@@ -13,10 +13,13 @@ export default async function MoviesPage({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const { search = "", page = "1" } = await searchParams;
-  const { movies, totalResults } = await getMovies({
-    search,
-    page,
-  });
+  const { movies, totalResults } = await getMovies(
+    {
+      search,
+      page,
+    },
+    { skip: !search }
+  );
 
   return (
     <>

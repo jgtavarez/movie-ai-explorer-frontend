@@ -55,10 +55,10 @@ export async function registerAction(
   }
 
   try {
-    const { jwt } = await registerApiCall({
+    const { jwt, user } = await registerApiCall({
       ...parsedCredentials.data,
     });
-    await createSession({ jwt });
+    await createSession({ id: user.id, jwt });
     redirect("/home");
   } catch (error: any) {
     if (error?.message === "NEXT_REDIRECT") {

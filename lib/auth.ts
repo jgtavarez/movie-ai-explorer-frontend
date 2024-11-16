@@ -6,7 +6,10 @@ import { AuthResponse } from "@/interfaces/auth";
 
 const encodedKey = new TextEncoder().encode(process.env.AUTH_SECRET);
 
-type CookiesPayload = Pick<AuthResponse, "jwt">;
+type CookiesPayload = {
+  id: AuthResponse["user"]["id"];
+  jwt: AuthResponse["jwt"];
+};
 
 export async function encrypt(payload: CookiesPayload, expires: Date) {
   return new SignJWT(payload)
@@ -21,7 +24,7 @@ export async function decrypt(session: string | undefined = "") {
     const { payload } = await jwtVerify(session, encodedKey, {
       algorithms: ["HS256"],
     });
-    return payload;
+    return payload as { id: string; jwt: string };
   } catch (error) {
     console.log("Session not valid: ", error);
   }
@@ -48,9 +51,15 @@ export const verifySession = cache(async () => {
   const cookie = cookies().get("session")?.value;
   const session = await decrypt(cookie);
 
-  if (!session?.jwt) {
-    return { jwt: null };
+  if (!session?.id) {
+    return { id: null, jwt: null };
   }
 
-  return { jwt: session.jwt };
+  return { id: session.id, jwt: session.jwt };
 });
+
+export const getCacheKey = async (key: string) => {
+  const session = await verifySession();
+
+  return `${key}:${session?.id}`;
+};

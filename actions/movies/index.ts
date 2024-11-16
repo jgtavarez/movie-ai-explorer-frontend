@@ -1,23 +1,37 @@
 "use server";
 import { MovieResp, MovieSearch, MoviesResp } from "@/interfaces/api";
 import { GetAllMoviesParams } from "@/interfaces/entities/Movie";
-import { authFetch } from "@/lib/api";
+import { authFetch, InitOptions, Options } from "@/lib/api";
 import { notFound } from "next/navigation";
 
 export const getMovies = async (
-  getAllMoviesParams: GetAllMoviesParams
+  getAllMoviesParams: GetAllMoviesParams,
+  { skip }: Options = InitOptions
 ): Promise<{
   movies: MovieSearch[];
   totalResults: number;
 }> => {
+  console.log("getMovies");
   const { search, page } = getAllMoviesParams;
+  if (skip) {
+    return {
+      movies: [],
+      totalResults: 0,
+    };
+  }
+
   const params = new URLSearchParams({
     search,
     page,
   }).toString();
 
   const data: MoviesResp = await authFetch(
-    `${process.env.SERVER_URL}/movies?${params}`
+    `${process.env.SERVER_URL}/movies?${params}`,
+    {
+      next: {
+        revalidate: 60 * 60 * 24, // 24h
+      },
+    }
   ).then((res) => res.json());
 
   return {
@@ -27,11 +41,12 @@ export const getMovies = async (
 };
 
 export const getMovie = async (id: string): Promise<MovieResp> => {
+  console.log("getMovie");
   const data: MovieResp = await authFetch(
     `${process.env.SERVER_URL}/movies/${id}`,
     {
       next: {
-        revalidate: 60 * 60 * 24, //24h
+        revalidate: 60 * 60 * 24, // 24h
       },
     }
   ).then((resp) => {
@@ -45,6 +60,7 @@ export const getMovie = async (id: string): Promise<MovieResp> => {
 };
 
 export const getRecommendedMovies = async (): Promise<MovieSearch[]> => {
+  console.log("getRecommendedMovies");
   const params = new URLSearchParams({
     search: "music",
   }).toString();

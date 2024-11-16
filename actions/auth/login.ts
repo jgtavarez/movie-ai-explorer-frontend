@@ -33,8 +33,8 @@ export async function loginAction(
   }
 
   try {
-    const { jwt } = await loginApiCall({ ...parsedCredentials.data });
-    await createSession({ jwt });
+    const { jwt, user } = await loginApiCall({ ...parsedCredentials.data });
+    await createSession({ id: user.id, jwt });
     redirect("/home");
   } catch (error: any) {
     if (error?.message === "NEXT_REDIRECT") {

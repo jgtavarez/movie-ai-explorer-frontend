@@ -9,7 +9,7 @@ export default async function AuthLayout({
 }) {
   const session = await verifySession();
 
-  if (!session?.jwt) {
+  if (!session?.id) {
     redirect("/auth/login");
   }
 
