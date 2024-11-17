@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { CustomLink } from "./CustomLink";
+import { ToggleDarkMode } from "./ToggleDarkMode";
 
 export const Header = () => {
   const links = [
@@ -24,17 +26,27 @@ export const Header = () => {
     <header>
       <nav className="bg-white dark:bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+          {/* Logo */}
           <a href="#" className="flex items-center">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="mr-3 h-6 sm:h-9"
-              alt="App Logo"
+              alt="Flowbite Logo"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Movie AI Explorer
             </span>
           </a>
+
+          {/* sd */}
           <div className="flex items-center lg:order-2">
+            <ToggleDarkMode />
+            <Link
+              className="flex mx-3 text-sm bg-black rounded-full"
+              href={"/home/profile"}
+            >
+              <div className="w-8 h-8 rounded-full bg-blue-500" />
+            </Link>
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
@@ -42,6 +54,7 @@ export const Header = () => {
               aria-controls="mobile-menu-2"
               aria-expanded="false"
             >
+              <span className="sr-only">Open main menu</span>
               <svg
                 className="w-6 h-6"
                 fill="currentColor"
@@ -68,8 +81,10 @@ export const Header = () => {
               </svg>
             </button>
           </div>
+
+          {/* Links */}
           <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            className="justify-between items-center w-full lg:flex lg:w-auto lg:order-1 hidden"
             id="mobile-menu-2"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">

@@ -15,6 +15,9 @@ export const Search = () => {
         type="text"
         placeholder="Search"
         defaultValue={searchParams.get("search") || ""}
+        style={{
+          paddingLeft: "2.5rem",
+        }}
         onChange={(e) => {
           handleSearch(e.target.value);
         }}

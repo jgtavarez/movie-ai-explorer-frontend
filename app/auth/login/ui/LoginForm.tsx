@@ -16,7 +16,6 @@ export const LoginForm = () => {
           <Label
             htmlFor="email"
             text="Email"
-            className="text-sm text-gray-600 dark:text-gray-200"
           />
           <Input
             type="email"
@@ -28,11 +27,10 @@ export const LoginForm = () => {
         </div>
 
         {/* Password */}
-        <div>
+        <div className="mt-2">
           <Label
             htmlFor="password"
             text="Password"
-            className="text-sm text-gray-600 dark:text-gray-200"
           />
           <Input
             type="password"

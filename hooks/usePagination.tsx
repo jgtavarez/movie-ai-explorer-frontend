@@ -14,21 +14,15 @@ export const usePagination = (totalResults: number) => {
     redirect(pathName);
   }
 
-  const createPageUrl = (pageNumber: number | string) => {
+  const createHref = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
 
-    if (pageNumber === "...") {
+    // no change page
+    if (pageNumber === "..." || +pageNumber <= 0 || +pageNumber > totalPages) {
       return `${pathName}?${params.toString()}`;
     }
 
-    if (+pageNumber <= 0) {
-      return `${pathName}`;
-    }
-
-    if (+pageNumber > totalPages) {
-      return `${pathName}?${params.toString()}`;
-    }
-
+    // set new page
     params.set("page", pageNumber.toString());
     return `${pathName}?${params.toString()}`;
   };
@@ -36,7 +30,7 @@ export const usePagination = (totalResults: number) => {
   const allPages = generatePaginationPages(currentPage, totalPages);
 
   return {
-    createPageUrl,
+    createHref,
     currentPage,
     allPages,
   };

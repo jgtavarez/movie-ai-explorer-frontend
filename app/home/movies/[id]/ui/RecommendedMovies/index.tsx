@@ -1,6 +1,6 @@
+import { SparkleIcon } from "@/components/icons";
 import { MovieCard } from "../../../ui/MovieCard";
 import { getRecommendedMovies } from "@/actions/movies";
-import { SparkleIcon } from "@/components/Icons/SparkleIcon";
 
 export const RecommendedMovies = async () => {
   const recommendedMovies = await getRecommendedMovies();

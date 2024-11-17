@@ -3,5 +3,8 @@ export * from "./ClockIcon";
 export * from "./DeleteIcon";
 export * from "./FavoriteIcon";
 export * from "./LoadingIcon";
+export * from "./MoonIcon";
 export * from "./NoDataIcon";
 export * from "./RocketIcon";
+export * from "./SparkleIcon";
+export * from "./StarIcon";

@@ -1,4 +1,4 @@
-import { NoDataIcon } from "@/components/Icons";
+import { NoDataIcon } from "@/components/icons";
 import { Button } from "@/components/ui";
 import Link from "next/link";
 import React from "react";

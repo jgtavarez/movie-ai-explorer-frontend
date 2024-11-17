@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { verifySession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export default async function AuthLayout({
+export default async function HomeLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -14,7 +14,15 @@ export default async function AuthLayout({
   }
 
   return (
-    <main>
+    <main
+      style={{
+        margin: 0,
+        padding: 0,
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Header />
       {children}
     </main>

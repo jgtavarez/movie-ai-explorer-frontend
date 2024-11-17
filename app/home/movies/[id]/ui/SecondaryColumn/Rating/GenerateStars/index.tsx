@@ -1,5 +1,5 @@
+import { StarIcon } from "@/components/icons";
 import { Fragment } from "react";
-import { StarIcon } from "@/components/Icons/StarIcon";
 
 interface Props {
   stars: number;
@@ -13,9 +13,9 @@ export const GenerateStars = ({ stars }: Props) => {
       {[...Array(5)].map((_, i) => (
         <Fragment key={`StarIcon_${i}`}>
           {i < rating ? (
-            <StarIcon color="text-gray-900" />
+            <StarIcon color="text-gray-900 dark:text-gray-400" />
           ) : (
-            <StarIcon color="text-gray-400" />
+            <StarIcon color="text-gray-400 dark:text-gray-900" />
           )}
         </Fragment>
       ))}

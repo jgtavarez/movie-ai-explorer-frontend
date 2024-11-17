@@ -10,7 +10,7 @@ interface Props {
   action: (toggleFavoriteInput: ToggleFavoriteInput) => Promise<Favorite>;
 }
 
-export const Toggle = ({ favorite, action }: Props) => {
+export const ToggleFavoriteClient = ({ favorite, action }: Props) => {
   const { id = "" } = useParams();
 
   const [optimisticFavorite, setOptimisticFavorite, handleOptimisticUpdate] =

@@ -6,7 +6,7 @@ export default function Loading() {
   return (
     <Container>
       <CardGrid>
-        {[...Array(10)].map((_, i) => (
+        {[...Array(11)].map((_, i) => (
           <SkeletonCard key={`grid_1_${i}`} />
         ))}
       </CardGrid>

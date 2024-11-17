@@ -1,6 +1,6 @@
 "use client";
 import { toggleFavorite } from "@/actions/favorites";
-import { ClockIcon, FavoriteIcon } from "@/components/Icons";
+import { ClockIcon, FavoriteIcon } from "@/components/icons";
 import { Modal } from "@/components/Modal";
 import { MovieImage } from "@/components/MovieImage";
 import { useModal } from "@/hooks/useModal";
@@ -24,7 +24,7 @@ export const FavoriteCard = ({ favorite }: Props) => {
             src={favorite.movie.poster}
             alt={favorite.movie.title}
             fill
-            className="rounded-2xl transition-transform duration-300 transform group-hover:scale-105 object-cover"
+            className="transition-transform duration-300 transform group-hover:scale-105 object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div

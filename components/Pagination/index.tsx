@@ -8,16 +8,16 @@ interface Props {
 }
 
 export const Pagination = ({ totalResults }: Props) => {
-  const { createPageUrl, currentPage, allPages } = usePagination(totalResults);
+  const { createHref, currentPage, allPages } = usePagination(totalResults);
 
   return (
-    <div className="flex text-center justify-center mt-10 mb-32">
+    <div className="flex text-center justify-center mt-10 mb-9">
       <nav aria-label="pagination">
         <ul className="flex list-style-none">
           <li>
             <Link
               className="pagination-no-selected"
-              href={createPageUrl(currentPage - 1)}
+              href={createHref(currentPage - 1)}
             >
               <h1>{`<`}</h1>
             </Link>
@@ -30,7 +30,7 @@ export const Pagination = ({ totalResults }: Props) => {
                   "bg-blue-500 dark:hover:bg-blue-500 text-white dark:text-white hover:bg-blue-600":
                     page === currentPage,
                 })}
-                href={createPageUrl(page)}
+                href={createHref(page)}
               >
                 {page}
               </Link>
@@ -40,7 +40,7 @@ export const Pagination = ({ totalResults }: Props) => {
           <li>
             <Link
               className="pagination-no-selected"
-              href={createPageUrl(currentPage + 1)}
+              href={createHref(currentPage + 1)}
             >
               <h1>{`>`}</h1>
             </Link>

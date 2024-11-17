@@ -16,7 +16,6 @@ export const RegisterForm = () => {
           <Label
             htmlFor="name"
             text="Full Name"
-            className="text-sm text-gray-600 dark:text-gray-200"
           />
           <Input
             type="text"
@@ -28,11 +27,10 @@ export const RegisterForm = () => {
         </div>
 
         {/* Email */}
-        <div>
+        <div className="mt-2">
           <Label
             htmlFor="email"
             text="Email"
-            className="text-sm text-gray-600 dark:text-gray-200"
           />
           <Input
             type="email"
@@ -44,11 +42,10 @@ export const RegisterForm = () => {
         </div>
 
         {/* Password */}
-        <div>
+        <div className="mt-2">
           <Label
             htmlFor="password"
             text="Password"
-            className="text-sm text-gray-600 dark:text-gray-200"
           />
           <Input
             type="password"
@@ -60,11 +57,10 @@ export const RegisterForm = () => {
         </div>
 
         {/* Confirm Password */}
-        <div>
+        <div className="mt-2">
           <Label
             htmlFor="confirmPassword"
             text="Confirm Password"
-            className="text-sm text-gray-600 dark:text-gray-200"
           />
           <Input
             type="password"

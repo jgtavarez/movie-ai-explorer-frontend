@@ -1,4 +1,4 @@
-import { ArrowIcon, RocketIcon } from "@/components/Icons";
+import { ArrowIcon, RocketIcon } from "@/components/icons";
 
 export const GetStarted = () => {
   return (
