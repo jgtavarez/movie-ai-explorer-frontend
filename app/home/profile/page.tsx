@@ -1,5 +1,6 @@
 import { getUser } from "@/actions/user";
 import { ProfileCard } from "./ui/ProfileCard";
+import Image from "next/image";
 
 export default async function ProfilePage() {
   const user = await getUser();
@@ -13,13 +14,15 @@ export default async function ProfilePage() {
       }}
     >
       <section className="relative block h-500-px h-96 ">
-        <div
-          className="absolute top-0 w-full h-full bg-center bg-cover"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80)",
-          }}
-        >
+        <div className="relative top-0 w-full h-full">
+          <Image
+            src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80"
+            alt="Profile Background image"
+            layout="fill"
+            objectFit="cover"
+            quality={80}
+            priority
+          />
           <span className="w-full h-full absolute opacity-50 bg-black"></span>
         </div>
         <div

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { CustomLink } from "./CustomLink";
 import { ToggleDarkMode } from "./ToggleDarkMode";
+import Image from "next/image";
+import { ProfileIcon } from "../icons";
 
 export const Header = () => {
   const links = [
@@ -27,25 +29,29 @@ export const Header = () => {
       <nav className="bg-white dark:bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           {/* Logo */}
-          <a href="#" className="flex items-center">
-            <img
+          <Link href={"/home"} className="flex items-center">
+            <Image
               src="https://flowbite.com/docs/images/logo.svg"
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
+              height={36}
+              width={35}
+              alt="App Logo"
+              className="mr-3"
             />
             <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Movie AI Explorer
             </span>
-          </a>
+          </Link>
 
-          {/* sd */}
+          {/* Extras */}
           <div className="flex items-center lg:order-2">
             <ToggleDarkMode />
             <Link
-              className="flex mx-3 text-sm bg-black rounded-full"
+              className="flex mx-3 rounded-full"
               href={"/home/profile"}
             >
-              <div className="w-8 h-8 rounded-full bg-blue-500" />
+              <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                <ProfileIcon />
+              </div>
             </Link>
             <button
               data-collapse-toggle="mobile-menu-2"

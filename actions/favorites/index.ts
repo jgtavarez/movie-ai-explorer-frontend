@@ -15,7 +15,6 @@ export const getFavorites = async (
 ): Promise<{
   favorites: Favorite[];
 }> => {
-  console.log("getFavorites");
   const { search } = getAllFavoritesParams;
   const params = new URLSearchParams({
     search,
@@ -26,7 +25,7 @@ export const getFavorites = async (
     {
       next: {
         tags: [await getCacheKey(CACHE_KEY)],
-        revalidate: 7 * 24 * 60 * 60, // 7 days
+        revalidate: 7 * 24 * 60 * 60, // 7d
       },
     }
   ).then((res) => res.json());
@@ -39,7 +38,6 @@ export const getFavorites = async (
 export const toggleFavorite = async (
   toggleFavoriteInput: ToggleFavoriteInput
 ): Promise<Favorite> => {
-  console.log("toggleFavorite");
   const { imdb_id } = toggleFavoriteInput;
   const data: Favorite = await authFetch(
     `${process.env.SERVER_URL}/favorites`,
@@ -55,7 +53,6 @@ export const toggleFavorite = async (
 };
 
 export const getFavorite = async (imdb_id: string): Promise<boolean> => {
-  console.log("getFavorite");
   const data: boolean = await authFetch(
     `${process.env.SERVER_URL}/favorites/${imdb_id}`
   ).then((res) => res.json());

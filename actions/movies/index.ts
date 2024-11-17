@@ -11,7 +11,6 @@ export const getMovies = async (
   movies: MovieSearch[];
   totalResults: number;
 }> => {
-  console.log("getMovies");
   const { search, page } = getAllMoviesParams;
   if (skip) {
     return {
@@ -41,12 +40,11 @@ export const getMovies = async (
 };
 
 export const getMovie = async (id: string): Promise<MovieResp> => {
-  console.log("getMovie");
   const data: MovieResp = await authFetch(
     `${process.env.SERVER_URL}/movies/${id}`,
     {
       next: {
-        revalidate: 60 * 60 * 24, // 24h
+        revalidate: 7 * 24 * 60 * 60, // 7d
       },
     }
   ).then((resp) => {
@@ -59,14 +57,17 @@ export const getMovie = async (id: string): Promise<MovieResp> => {
   return data;
 };
 
-export const getRecommendedMovies = async (): Promise<MovieSearch[]> => {
-  console.log("getRecommendedMovies");
-  const params = new URLSearchParams({
-    search: "music",
-  }).toString();
-  const data: MoviesResp = await authFetch(
-    `${process.env.SERVER_URL}/movies?${params}`
+export const getRecommendedMovies = async (
+  imdbId: string
+): Promise<MovieResp[]> => {
+  const data: MovieResp[] = await authFetch(
+    `${process.env.SERVER_URL}/movies/recommendations/${imdbId}`,
+    {
+      next: {
+        revalidate: 60 * 60 * 24, // 24h
+      },
+    }
   ).then((res) => res.json());
 
-  return data.Search;
+  return data;
 };

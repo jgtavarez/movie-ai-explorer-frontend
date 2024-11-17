@@ -8,6 +8,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "flowbite.com",
+      },
+      {
+        protocol: "https",
         hostname: "m.media-amazon.com",
       },
     ],

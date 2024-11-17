@@ -5,6 +5,7 @@ export * from "./FavoriteIcon";
 export * from "./LoadingIcon";
 export * from "./MoonIcon";
 export * from "./NoDataIcon";
+export * from "./ProfileIcon";
 export * from "./RocketIcon";
 export * from "./SparkleIcon";
 export * from "./StarIcon";

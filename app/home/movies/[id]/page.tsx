@@ -2,7 +2,21 @@ import Image from "next/image";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { getMovie } from "@/actions/movies";
 import { SecondaryColumn } from "./ui/SecondaryColumn";
-import { RecommendedMovies } from "./ui/RecommendedMovies";
+import { LoadingIcon } from "@/components/icons";
+import dynamic from "next/dynamic";
+
+// load recommendations ui lazy
+const RecommendedMovies = dynamic(
+  () => import("./ui/RecommendedMovies/index"),
+  {
+    loading: () => (
+      <div className="mx-auto px-4 lg:max-w-7xl mt-14 mb-12 flex justify-start items-center space-x-1 text-sm title-theme">
+        <LoadingIcon />
+        <div>Loading...</div>
+      </div>
+    ),
+  }
+);
 
 interface Props {
   params: { id: string };
@@ -209,7 +223,7 @@ export default async function MoviePage({ params }: Props) {
       <div className="mx-auto px-4 lg:max-w-7xl mt-14 mb-12">
         <hr />
       </div>
-      <RecommendedMovies />
+      <RecommendedMovies imdbId={movie.imdbID} />
     </section>
   );
 }

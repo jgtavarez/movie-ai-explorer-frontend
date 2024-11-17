@@ -18,9 +18,12 @@ export enum MovieType {
   Episode = "episode",
 }
 
-export interface MovieResp {
-  Title: string;
-  Year: string;
+export interface MovieResp extends MovieSearch {
+  // Title: string;
+  // Year: string;
+  // imdbID: string;
+  // Type: string;
+  // Poster: string;
   Rated: string;
   Released: string;
   Runtime: string;
@@ -32,13 +35,10 @@ export interface MovieResp {
   Language: string;
   Country: string;
   Awards: string;
-  Poster: string;
   Ratings: Rating[];
   Metascore: string;
   imdbRating: string;
   imdbVotes: string;
-  imdbID: string;
-  Type: string;
   DVD: string;
   BoxOffice: string;
   Production: string;

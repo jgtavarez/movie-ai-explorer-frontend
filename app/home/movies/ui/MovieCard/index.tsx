@@ -19,7 +19,9 @@ export const MovieCard = ({ movie }: Props) => {
             src={movie.Poster}
             alt={movie.Title}
             fill
-            objectFit="cover"
+            style={{
+              objectFit: "cover",
+            }}
             className="transition-transform duration-300 transform group-hover:scale-105 object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
