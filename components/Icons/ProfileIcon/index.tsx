@@ -1,7 +1,7 @@
 export const ProfileIcon = () => {
   return (
     <svg fill="#ffffff" width="16px" height="16px" viewBox="0 0 16 16">
-      <g stroke-linecap="round" stroke-linejoin="round" />
+      <g strokeLinecap="round" strokeLinejoin="round" />
 
       <g>
         <g>

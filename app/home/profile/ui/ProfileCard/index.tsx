@@ -1,6 +1,8 @@
 import React from "react";
 import { SignOut } from "../SignOut";
 import { User } from "@/interfaces/entities/User";
+import Link from "next/link";
+import { Button } from "@/components/ui";
 
 interface Props {
   user: User;
@@ -35,34 +37,58 @@ export const ProfileCard = ({ user }: Props) => {
             </div>
           </div>
         </div>
+
         {/* Personal Info */}
         <div className="text-center mt-12">
           <h3 className="text-4xl font-semibold leading-normal mb-2 title-theme">
             {user.name}
           </h3>
           <div className="text-sm leading-normal mt-0 mb-2 font-bold uppercase description-theme">
-            <i className="fas fa-map-marker-alt mr-2 text-lg"></i>
+            <i className="mr-2 text-lg"></i>
             Los Angeles, California
           </div>
-          <div className="mb-2  mt-10 title-theme">
-            <i className="mr-2 text-lg"></i>
-            Solution, Manager, Creative, Tim & Officer
-          </div>
         </div>
+
         {/* Description */}
         <div className="mt-10 py-10 border-t border-gray-200 text-center">
           <div className="flex flex-wrap justify-center">
             <div className="w-full lg:w-9/12 px-4">
-              <p className="mb-4 text-lg leading-relaxed description-theme">
-                An artist of considerable range, Jenna the name taken by
-                Melbourne-raised, Brooklyn-based Nick Murphy writes, performs
-                and records all of his own music, giving it a warm, intimate
-                feel with a solid groove structure. An artist of considerable
-                range.
+              <p className="mb-4 text-base leading-relaxed description-theme">
+                {user.categories.length ? (
+                  <>
+                    <p className="mb-4 description-theme">
+                      Here’s a quick look at your favorites categories! These
+                      represent your interests <br /> and help us provide you
+                      with the best recommendations:
+                    </p>
+                    <div className="mb-4 description-theme">
+                      <span className="font-bold capitalize">
+                        {user.categories.map((c) => c.title).join(" - ")}
+                      </span>
+                    </div>
+                    <p className="mb-4 description-theme">
+                      Feel free to update your choices anytime to refine your
+                      experience further!
+                    </p>
+                  </>
+                ) : (
+                  <p className="mb-4 leading-relaxed description-theme">
+                    You currently don&apos;t have any movie categories selected.
+                    Take a moment to choose some that resonate with your
+                    interests, this will help us get to know you better and
+                    provide personalized recommendations that suit your
+                    preferences!
+                  </p>
+                )}
               </p>
-              <a href="#pablo" className="font-normal text-pink-500">
-                Edit
-              </a>
+              <Link href="/home/profile/categories">
+                <Button
+                  text="Edit Categories"
+                  style={{
+                    maxWidth: "18rem",
+                  }}
+                />
+              </Link>
             </div>
           </div>
         </div>

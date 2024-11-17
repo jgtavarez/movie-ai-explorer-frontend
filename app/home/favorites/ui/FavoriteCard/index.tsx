@@ -5,7 +5,7 @@ import { Modal } from "@/components/Modal";
 import { MovieImage } from "@/components/MovieImage";
 import { useModal } from "@/hooks/useModal";
 import { Favorite } from "@/interfaces/entities/Favorite";
-import { formatDate } from "@/lib/time";
+import { formatDate, timeAgo } from "@/lib/time";
 import Link from "next/link";
 
 interface Props {
@@ -53,7 +53,7 @@ export const FavoriteCard = ({ favorite }: Props) => {
             </p>
           </div>
           <div className="text-sm flex items-center text-gray-500 description-theme">
-            2 Days ago
+            {timeAgo(favorite.created_at)}
             <ClockIcon />
           </div>
         </div>

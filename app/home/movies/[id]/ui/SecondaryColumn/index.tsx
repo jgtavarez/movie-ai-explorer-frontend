@@ -19,21 +19,23 @@ export const SecondaryColumn = ({ movie }: Props) => {
 
       <div className="mt-10">
         {/* More Ratings */}
-        <div>
-          <h3 className="text-sm font-bold title-theme">More Ratings</h3>
-          <div className="mt-4">
-            <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-              {movie.Ratings.map((ratings) => (
-                <li key={ratings.Source} className="text-gray-400">
-                  <span className="description-theme">{ratings.Source}</span>
-                  <span className="ml-3 text-sm font-medium text-teal-600 hover:text-cyan-500">
-                    {ratings.Value}
-                  </span>
-                </li>
-              ))}
-            </ul>
+        {movie.Ratings.length ? (
+          <div>
+            <h3 className="text-sm font-bold title-theme">More Ratings</h3>
+            <div className="mt-4">
+              <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                {movie.Ratings.map((ratings) => (
+                  <li key={ratings.Source} className="text-gray-400">
+                    <span className="description-theme">{ratings.Source}</span>
+                    <span className="ml-3 text-sm font-medium text-teal-600 hover:text-cyan-500">
+                      {ratings.Value}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Director */}
         <div className="mt-5">

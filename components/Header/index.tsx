@@ -22,6 +22,10 @@ export const Header = () => {
       text: "Favorites",
       href: "/home/favorites",
     },
+    {
+      text: "Chatbot",
+      href: "/home/chatbot",
+    },
   ];
 
   return (
@@ -45,10 +49,7 @@ export const Header = () => {
           {/* Extras */}
           <div className="flex items-center lg:order-2">
             <ToggleDarkMode />
-            <Link
-              className="flex mx-3 rounded-full"
-              href={"/home/profile"}
-            >
+            <Link className="flex mx-3 rounded-full" href={"/home/profile"}>
               <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
                 <ProfileIcon />
               </div>

@@ -2,7 +2,7 @@ import { User } from "./entities/User";
 
 export interface AuthResponse {
   jwt: string;
-  user: User;
+  user: Pick<User, "id">;
 }
 
 export interface LoginInput {
