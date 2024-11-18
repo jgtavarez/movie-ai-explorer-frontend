@@ -11,4 +11,5 @@ export enum CategoryTitle {
 
 export interface Category extends BaseEntity {
   title: CategoryTitle;
+  image: string;
 }

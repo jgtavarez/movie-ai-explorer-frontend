@@ -18,10 +18,12 @@ export default async function AuthLayout({
       <div className="flex justify-center h-screen">
         <div className="hidden lg:block lg:w-2/3 relative">
           <Image
-            src="https://images.unsplash.com/photo-1514899706957-d22ee867a77b?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Background image"
+            src="https://images.unsplash.com/photo-1514899706957-d22ee867a77b?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Auth background image"
+            style={{
+              objectFit: "cover",
+            }}
             layout="fill"
-            objectFit="cover"
             quality={80}
             priority
           />

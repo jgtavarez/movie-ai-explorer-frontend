@@ -3,7 +3,10 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Category } from "../../../../../../interfaces/entities/Category";
-import { UpdateUserInput, User } from "../../../../../../interfaces/entities/User";
+import {
+  UpdateUserInput,
+  User,
+} from "../../../../../../interfaces/entities/User";
 import { Button } from "../../../../../../components/ui";
 
 interface Props {
@@ -42,7 +45,7 @@ export const SelectCategories = ({ categories, selected, action }: Props) => {
                   ? "border-4 border-gray-600 dark:border-gray-200"
                   : "border-transparent hover:border-gray-600 dark:hover:border-gray-200"
               }`}
-              src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixqx=oilqXxSqey&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              src={category.image}
               width={150}
               height={150}
             />
