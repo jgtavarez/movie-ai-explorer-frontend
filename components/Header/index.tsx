@@ -19,6 +19,10 @@ export const Header = () => {
       href: "/home/favorites",
     },
     {
+      text: "Blogs",
+      href: "/home/blogs",
+    },
+    {
       text: "Chatbot",
       href: "/home/chatbot",
     },

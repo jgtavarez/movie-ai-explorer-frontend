@@ -4,6 +4,7 @@ import { getMovie } from "@/actions/movies";
 import { SecondaryColumn } from "./ui/SecondaryColumn";
 import { LoadingIcon } from "@/components/icons";
 import dynamic from "next/dynamic";
+import { Metadata } from "next";
 
 // load recommendations ui lazy
 const RecommendedMovies = dynamic(
@@ -22,22 +23,22 @@ interface Props {
   params: { id: string };
 }
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   try {
-//     const { imdbID, Title, Plot } = await getMovie(params.id);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  try {
+    const { imdbID, Title, Plot } = await getMovie(params.id);
 
-//     return {
-//       title: `${Title} - ${imdbID}`,
-//       description: Plot,
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       title: "",
-//       description: "",
-//     };
-//   }
-// }
+    return {
+      title: `${Title} - ${imdbID}`,
+      description: Plot,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      title: "",
+      description: "",
+    };
+  }
+}
 
 export default async function MoviePage({ params }: Props) {
   const movie = await getMovie(params.id);

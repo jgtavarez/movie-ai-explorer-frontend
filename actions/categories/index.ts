@@ -6,7 +6,6 @@ import { getCacheKey } from "@/lib/auth";
 const CACHE_KEY = "categories";
 
 export const getCategories = async (): Promise<Category[]> => {
-  console.log("getCategories");
   const data: Category[] = await authFetch(
     `${process.env.SERVER_URL}/categories`,
     {
