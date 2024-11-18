@@ -1,14 +1,12 @@
 import React from "react";
 import { SignOut } from "../SignOut";
 import Link from "next/link";
-import { User } from "../../../../../interfaces/entities/User";
 import { Button } from "../../../../../components/ui";
+import { getUser } from "../../../../../actions/user";
 
-interface Props {
-  user: User;
-}
+export const ProfileCard = async () => {
+  const user = await getUser();
 
-export const ProfileCard = ({ user }: Props) => {
   return (
     <section className="relative py-16 container mx-auto px-4">
       <div className="flex flex-col min-w-0 break-words bg-white dark:bg-gray-900  w-full mb-6 shadow-xl rounded-lg -mt-64 px-6">
@@ -21,9 +19,7 @@ export const ProfileCard = ({ user }: Props) => {
           </div>
           <div className="lg:w-4/12 lg:order-1">
             <div className="flex justify-center py-4 lg:pt-4 pt-8">
-              <div className="py-3 text-center">
-                
-              </div>
+              <div className="py-3 text-center"></div>
             </div>
           </div>
           <div className="lg:w-4/12 lg:order-1">

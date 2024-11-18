@@ -1,10 +1,7 @@
-import { getUser } from "../../../actions/user";
 import { ProfileCard } from "./ui/ProfileCard";
 import Image from "next/image";
 
 export default async function ProfilePage() {
-  const user = await getUser();
-
   return (
     <section
       className="bg-gray-200"
@@ -48,7 +45,7 @@ export default async function ProfilePage() {
       </section>
 
       {/* Card */}
-      <ProfileCard user={user} />
+      <ProfileCard />
     </section>
   );
 }
