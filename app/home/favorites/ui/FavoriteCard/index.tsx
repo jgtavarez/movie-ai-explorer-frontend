@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Favorite } from "../../../../../interfaces/entities/Favorite";
 import { useModal } from "../../../../../hooks/useModal";
 import { MovieImage } from "../../../../../components/MovieImage";
-import { ClockIcon, FavoriteIcon } from "../../../../../components/icons";
 import { formatDate, timeAgo } from "../../../../../lib/time";
 import { Modal } from "../../../../../components/Modal";
 import { toggleFavorite } from "../../../../../actions/favorites";
+import { FavoriteIcon } from "../../../../../components/icons/FavoriteIcon";
+import { ClockIcon } from "../../../../../components/icons/ClockIcon";
 
 interface Props {
   favorite: Favorite;

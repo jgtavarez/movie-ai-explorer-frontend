@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { StarIcon } from "../../../../../../../../components/icons";
+import { StarIcon } from "../../../../../../../../components/icons/StarIcon";
 
 interface Props {
   stars: number;

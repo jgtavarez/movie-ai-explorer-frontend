@@ -6,6 +6,7 @@ export interface DataError {
   statusCode: number;
 }
 
+// no cache like fetch()
 export const baseApi = axios.create({
-  baseURL: "http://localhost:3001/api",
+  baseURL: `${process.env.SERVER_URL}`,
 });

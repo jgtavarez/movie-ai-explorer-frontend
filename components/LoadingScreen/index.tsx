@@ -1,4 +1,4 @@
-import { LoadingIcon } from "../icons";
+import { LoadingIcon } from "../icons/LoadingIcon";
 
 export const LoadingScreen = () => {
   return (
