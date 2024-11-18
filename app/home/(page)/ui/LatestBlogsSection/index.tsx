@@ -42,7 +42,7 @@ export const LatestBlogsSection = async () => {
           </div>
         </div>
       </div>
-      <div className="md:flex mt-8 md:-mx-4">
+      <div className="flex flex-col gap-4 md:gap-0 md:flex-row mt-8 md:-mx-4">
         {blogs.slice(1, 3).map((blog) => (
           <div
             key={blog.slug}

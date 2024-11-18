@@ -2,7 +2,7 @@
 import { Container } from "@/components/layouts/Container";
 import { useState } from "react";
 import { Message } from "./ui/Message";
-import { Input } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import { chatBotApi } from "@/actions/ai";
 
 export default function ChatbotHome() {
@@ -30,23 +30,28 @@ export default function ChatbotHome() {
   return (
     <Container>
       <div
-        className="w-full rounded-lg border border-[#e5e7eb] p-6"
+        className="w-full rounded-lg border border-[#e5e7eb] p-6 dark:bg-gray-900"
         style={{
           boxShadow: "0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05)",
         }}
       >
         {/* Header */}
         <div className="flex flex-col space-y-1.5 pb-6">
-          <h2 className="font-semibold text-lg tracking-tight">Chatbot</h2>
-          <p className="text-sm text-[#6b7280] leading-3">Powered by AI</p>
+          <h2 className="font-semibold text-lg tracking-tight title-theme">
+            Chatbot
+          </h2>
+          <p className="text-sm text-[#6b7280] leading-3 description-theme">
+            Powered by AI
+          </p>
         </div>
 
         {/* Render Messages */}
         <div
-          className="pr-4 h-[474px]"
+          className="pr-4 h-[500px]"
           style={{
             minWidth: "100%",
-            display: "table",
+            maxHeight: "500px",
+            overflowY: "auto",
           }}
         >
           {messages.map((message, index) => (
@@ -67,14 +72,16 @@ export default function ChatbotHome() {
               placeholder="Type your message"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
+              maxLength={400}
             />
-            <button
-              disabled={isLoading}
+            <Button
+              text="Send"
+              disabled={isLoading || !prompt}
               onClick={handlePost}
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] disabled:pointer-events-none disabled:opacity-50 bg-black hover:bg-[#111827E6] h-10 px-4 py-2"
-            >
-              Send
-            </button>
+              style={{
+                maxWidth: "6rem",
+              }}
+            />
           </div>
         </div>
       </div>

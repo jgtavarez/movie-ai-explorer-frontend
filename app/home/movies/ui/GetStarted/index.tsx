@@ -3,7 +3,7 @@ import { ArrowIcon, RocketIcon } from "@/components/icons";
 export const GetStarted = () => {
   return (
     <div className="flex justify-center flex-col items-center gap-10 mt-14">
-      <div className="relative flex flex-col mt-6 text-gray-700 bg-white dark:bg-slate-800 shadow-md bg-clip-border rounded-xl w-96 dark:border">
+      <div className="relative flex flex-col mt-6 text-gray-700 bg-white dark:bg-gray-900 shadow-md bg-clip-border rounded-xl w-96 dark:border">
         <div className="p-6">
           <RocketIcon />
           <h5 className="block mb-2 text-xl antialiased font-semibold leading-snug tracking-normal title-theme">

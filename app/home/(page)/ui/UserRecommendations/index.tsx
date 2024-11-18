@@ -6,6 +6,10 @@ import React from "react";
 export const UserRecommendations = async () => {
   const userRecommendedMovies = await getUserRecommendedMovies();
 
+  if (!userRecommendedMovies.length) {
+    return null;
+  }
+
   return (
     <section className="mt-16">
       <div className="flex items-center gap-2">

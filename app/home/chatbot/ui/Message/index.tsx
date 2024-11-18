@@ -1,6 +1,6 @@
 "use client";
-
 import { ProfileIcon, SparkleIcon } from "@/components/icons";
+import Markdown from "react-markdown";
 
 export interface Message {
   text: string;
@@ -28,10 +28,12 @@ export const Message = ({ message }: Props) => {
         </div>
       </span>
       <p className="leading-relaxed">
-        <span className="block font-bold text-gray-700">
+        <span className="block font-bold title-theme">
           {message.isUser ? "You" : "AI"}
         </span>
-        {message.text}
+        <span className="description-theme">
+          <Markdown>{message.text}</Markdown>
+        </span>
       </p>
     </div>
   );
