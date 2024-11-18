@@ -4,7 +4,7 @@ import { CustomLink } from "./CustomLink";
 import { ToggleDarkMode } from "./ToggleDarkMode";
 import Image from "next/image";
 import { useState } from "react";
-import { ProfileIcon } from "../icons/ProfileIcon";
+import { ProfileIcon } from "../icon/ProfileIcon";
 
 const links = [
   {

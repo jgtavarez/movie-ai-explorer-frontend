@@ -1,7 +1,7 @@
 import React from "react";
 import { getUserRecommendedMovies } from "../../../../../actions/user";
 import { MovieCard } from "../../../movies/ui/MovieCard";
-import { SparkleIcon } from "../../../../../components/icons/SparkleIcon";
+import { SparkleIcon } from "../../../../../components/icon";
 
 export const UserRecommendations = async () => {
   const userRecommendedMovies = await getUserRecommendedMovies();
