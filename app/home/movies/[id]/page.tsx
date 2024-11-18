@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { getMovie } from "../../../../actions/movies";
 import { Breadcrumb } from "../../../../components/Breadcrumb";
-import { LoadingIcon } from "../../../../components/icons/LoadingIcon";
+import { LoadingIcon } from "../../../../components/icon/LoadingIcon";
 
 // load recommendations ui lazy
 const AiReview = dynamic(() => import("./ui/AiReview/index"), {

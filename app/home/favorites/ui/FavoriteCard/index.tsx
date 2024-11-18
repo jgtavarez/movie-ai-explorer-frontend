@@ -6,7 +6,7 @@ import { MovieImage } from "../../../../../components/MovieImage";
 import { formatDate, timeAgo } from "../../../../../lib/time";
 import { Modal } from "../../../../../components/Modal";
 import { toggleFavorite } from "../../../../../actions/favorites";
-import { FavoriteIcon, ClockIcon } from "../../../../../components/icons";
+import { FavoriteIcon, ClockIcon } from "../../../../../components/icon";
 
 interface Props {
   favorite: Favorite;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Button } from "../../../../../components/ui";
-import { NoDataIcon } from "../../../../../components/icons";
+import { NoDataIcon } from "../../../../../components/icon";
 
 export const NoFavorites = () => {
   return (
