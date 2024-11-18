@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { getAllBlogsPaths, getBlog } from "../../../../actions/blogs";
+import { getBlog } from "../../../../actions/blogs";
 import { formatDate } from "../../../../lib/time";
 
 interface Props {
@@ -8,15 +8,15 @@ interface Props {
 }
 
 // Static Generation
-export async function generateStaticParams() {
-  const blogs = await getAllBlogsPaths();
+// export async function generateStaticParams() {
+//   const blogs = await getAllBlogsPaths();
 
-  const staticParams = blogs.map((blog) => ({
-    slug: blog,
-  }));
+//   const staticParams = blogs.map((blog) => ({
+//     slug: blog,
+//   }));
 
-  return staticParams;
-}
+//   return staticParams;
+// }
 
 // Set Metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

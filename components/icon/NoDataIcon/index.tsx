@@ -1,5 +1,3 @@
-import React from "react";
-
 export const NoDataIcon = () => {
   return (
     <svg width="226" height="249.135" viewBox="0 0 226 249.135">

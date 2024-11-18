@@ -1,4 +1,3 @@
-import React from "react";
 import { MovieCard } from "../../../movies/ui/MovieCard";
 import { getMovies } from "../../../../../actions/movies";
 
