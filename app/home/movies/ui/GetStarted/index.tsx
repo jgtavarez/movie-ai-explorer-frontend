@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowIcon, RocketIcon } from "../../../../../components/icons";
+import { RocketIcon } from "../../../../../components/icons/RocketIcon";
+import { ArrowIcon } from "../../../../../components/icons/ArrowIcon";
 
 export const GetStarted = () => {
   return (

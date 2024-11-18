@@ -3,8 +3,8 @@ import Link from "next/link";
 import { CustomLink } from "./CustomLink";
 import { ToggleDarkMode } from "./ToggleDarkMode";
 import Image from "next/image";
-import { ProfileIcon } from "../icons";
 import { useState } from "react";
+import { ProfileIcon } from "../icons/ProfileIcon";
 
 const links = [
   {

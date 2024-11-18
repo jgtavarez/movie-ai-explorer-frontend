@@ -2,9 +2,9 @@ import Image from "next/image";
 import { SecondaryColumn } from "./ui/SecondaryColumn";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
-import { LoadingIcon } from "../../../../components/icons";
 import { getMovie } from "../../../../actions/movies";
 import { Breadcrumb } from "../../../../components/Breadcrumb";
+import { LoadingIcon } from "../../../../components/icons/LoadingIcon";
 
 // load recommendations ui lazy
 const AiReview = dynamic(() => import("./ui/AiReview/index"), {
