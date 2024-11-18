@@ -29,7 +29,7 @@ export const getMovies = async (
     `${process.env.SERVER_URL}/movies?${params}`,
     {
       next: {
-        revalidate: 60 * 60 * 24, // 24h
+        revalidate: 7 * 24 * 60 * 60, // 7d
       },
     }
   ).then((res) => res.json());

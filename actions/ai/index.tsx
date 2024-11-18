@@ -1,5 +1,4 @@
 "use server";
-
 import { ChatBotParams } from "../../interfaces/ai";
 import { authFetch } from "../../lib/api";
 

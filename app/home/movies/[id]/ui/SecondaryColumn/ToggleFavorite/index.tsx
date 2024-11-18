@@ -2,10 +2,10 @@ import { getFavorite, toggleFavorite } from "../../../../../../../actions/favori
 import { ToggleFavoriteClient } from "./Client";
 
 interface Props {
-  imdb_id: string;
+  imdbId: string;
 }
 
-export const ToggleFavorite = async ({ imdb_id }: Props) => {
-  const favorite = await getFavorite(imdb_id);
+export const ToggleFavorite = async ({ imdbId }: Props) => {
+  const favorite = await getFavorite(imdbId);
   return <ToggleFavoriteClient favorite={favorite} action={toggleFavorite} />;
 };

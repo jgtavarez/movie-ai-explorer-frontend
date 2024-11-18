@@ -41,7 +41,7 @@ export const ProfileCard = async () => {
         <div className="mt-10 py-10 border-t border-gray-200 text-center">
           <div className="flex flex-wrap justify-center">
             <div className="w-full lg:w-9/12 px-4">
-              <p className="mb-4 text-base leading-relaxed description-theme">
+              <div className="mb-4 text-base leading-relaxed description-theme">
                 {user.categories.length ? (
                   <>
                     <p className="mb-4 description-theme">
@@ -68,7 +68,7 @@ export const ProfileCard = async () => {
                     preferences!
                   </p>
                 )}
-              </p>
+              </div>
               <Link href="/home/profile/categories">
                 <Button
                   text="Edit Categories"
