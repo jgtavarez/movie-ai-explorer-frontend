@@ -22,10 +22,7 @@ export const ProfileCard = ({ user }: Props) => {
           <div className="lg:w-4/12 lg:order-1">
             <div className="flex justify-center py-4 lg:pt-4 pt-8">
               <div className="py-3 text-center">
-                <span className="text-xl font-bold block uppercase tracking-wide title-theme">
-                  22
-                </span>
-                <span className="text-sm description-theme">Favorites</span>
+                
               </div>
             </div>
           </div>
@@ -43,10 +40,6 @@ export const ProfileCard = ({ user }: Props) => {
           <h3 className="text-4xl font-semibold leading-normal mb-2 title-theme">
             {user.name}
           </h3>
-          <div className="text-sm leading-normal mt-0 mb-2 font-bold uppercase description-theme">
-            <i className="mr-2 text-lg"></i>
-            Los Angeles, California
-          </div>
         </div>
 
         {/* Description */}

@@ -19,11 +19,6 @@ export enum MovieType {
 }
 
 export interface MovieResp extends MovieSearch {
-  // Title: string;
-  // Year: string;
-  // imdbID: string;
-  // Type: string;
-  // Poster: string;
   Rated: string;
   Released: string;
   Runtime: string;
