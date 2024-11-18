@@ -1,8 +1,7 @@
-import { MovieResp } from "@/interfaces/api";
-import React from "react";
-import { Ul } from "@/components/ui/Ul";
 import { Rating } from "./Rating";
 import { ToggleFavorite } from "./ToggleFavorite";
+import { MovieResp } from "../../../../../../interfaces/api";
+import { Ul } from "../../../../../../components/ui/Ul";
 
 interface Props {
   movie: MovieResp;

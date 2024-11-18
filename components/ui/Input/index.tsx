@@ -1,4 +1,4 @@
-import { ErrorsList } from "@/components/ErrorsList";
+import { ErrorsList } from "../../ErrorsList";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   errors?: string[];

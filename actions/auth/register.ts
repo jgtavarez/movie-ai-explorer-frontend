@@ -1,9 +1,9 @@
 "use server";
-import { AuthResponse, RegisterInput } from "@/interfaces/auth";
-import { createSession } from "@/lib/auth";
-import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { AuthResponse, RegisterInput } from "../../interfaces/auth";
+import { baseApi, DataError } from "../../lib/axios";
+import { createSession } from "../../lib/auth";
 
 const REGISTER_SCHEMA = z
   .object({

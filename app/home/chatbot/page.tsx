@@ -1,9 +1,9 @@
 "use client";
-import { Container } from "@/components/layouts/Container";
 import { useState } from "react";
 import { Message } from "./ui/Message";
-import { Button, Input } from "@/components/ui";
-import { chatBotApi } from "@/actions/ai";
+import { chatBotApi } from "../../../actions/ai";
+import { Container } from "../../../components/layouts/Container";
+import { Button, Input } from "../../../components/ui";
 
 export default function ChatbotHome() {
   const [prompt, setPrompt] = useState("");

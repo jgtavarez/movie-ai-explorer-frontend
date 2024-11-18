@@ -1,6 +1,6 @@
-import { getMovies } from "@/actions/movies";
-import { MovieCard } from "@/app/home/movies/ui/MovieCard";
 import React from "react";
+import { MovieCard } from "../../../movies/ui/MovieCard";
+import { getMovies } from "../../../../../actions/movies";
 
 export const TrendingSection = async () => {
   const { movies: trendingMovies } = await getMovies({

@@ -1,4 +1,4 @@
-import { getFavorite, toggleFavorite } from "@/actions/favorites";
+import { getFavorite, toggleFavorite } from "../../../../../../../actions/favorites";
 import { ToggleFavoriteClient } from "./Client";
 
 interface Props {

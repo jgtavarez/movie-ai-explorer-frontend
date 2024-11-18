@@ -1,4 +1,4 @@
-import { getUser } from "@/actions/user";
+import { getUser } from "../../../actions/user";
 import { ProfileCard } from "./ui/ProfileCard";
 import Image from "next/image";
 

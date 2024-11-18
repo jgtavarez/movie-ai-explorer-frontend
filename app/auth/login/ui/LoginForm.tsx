@@ -1,9 +1,9 @@
 "use client";
-import { loginAction } from "@/actions/auth/login";
-import { ErrorsList } from "@/components/ErrorsList";
-import { Button, Input, Label } from "@/components/ui";
 import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
+import { loginAction } from "../../../../actions/auth/login";
+import { Button, Input, Label } from "../../../../components/ui";
+import { ErrorsList } from "../../../../components/ErrorsList";
 
 export const LoginForm = () => {
   const [state, action] = useFormState(loginAction, undefined);

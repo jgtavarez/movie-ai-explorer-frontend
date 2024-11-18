@@ -1,5 +1,5 @@
-import { generatePaginationPages } from "@/lib/math";
 import { usePathname, useSearchParams, redirect } from "next/navigation";
+import { generatePaginationPages } from "../lib/math";
 
 const PER_PAGE = 10;
 

@@ -1,6 +1,6 @@
 "use client";
-import { ProfileIcon, SparkleIcon } from "@/components/icons";
 import Markdown from "react-markdown";
+import { ProfileIcon, SparkleIcon } from "../../../../../components/icons";
 
 export interface Message {
   text: string;

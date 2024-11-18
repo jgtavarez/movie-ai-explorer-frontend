@@ -1,8 +1,8 @@
 import React from "react";
 import { SignOut } from "../SignOut";
-import { User } from "@/interfaces/entities/User";
 import Link from "next/link";
-import { Button } from "@/components/ui";
+import { User } from "../../../../../interfaces/entities/User";
+import { Button } from "../../../../../components/ui";
 
 interface Props {
   user: User;

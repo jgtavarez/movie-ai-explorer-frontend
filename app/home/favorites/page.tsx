@@ -1,8 +1,8 @@
-import { Search } from "@/components/Search";
-import { Alert } from "@/components/Alert";
-import { getFavorites } from "@/actions/favorites";
-import { CardGrid } from "@/components/layouts/CardGrid";
-import { Container } from "@/components/layouts/Container";
+import { getFavorites } from "../../../actions/favorites";
+import { Alert } from "../../../components/Alert";
+import { CardGrid } from "../../../components/layouts/CardGrid";
+import { Container } from "../../../components/layouts/Container";
+import { Search } from "../../../components/Search";
 import { FavoriteCard } from "./ui/FavoriteCard";
 import { NoFavorites } from "./ui/NoFavorites";
 

@@ -1,9 +1,9 @@
 "use client";
-import { registerAction } from "@/actions/auth/register";
-import { ErrorsList } from "@/components/ErrorsList";
-import { Button, Input, Label } from "@/components/ui";
 import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
+import { registerAction } from "../../../../actions/auth/register";
+import { Button, Input, Label } from "../../../../components/ui";
+import { ErrorsList } from "../../../../components/ErrorsList";
 
 export const RegisterForm = () => {
   const [state, action] = useFormState(registerAction, undefined);
@@ -13,10 +13,7 @@ export const RegisterForm = () => {
       <form action={action}>
         {/* Name */}
         <div>
-          <Label
-            htmlFor="name"
-            text="Full Name"
-          />
+          <Label htmlFor="name" text="Full Name" />
           <Input
             type="text"
             name="name"
@@ -28,10 +25,7 @@ export const RegisterForm = () => {
 
         {/* Email */}
         <div className="mt-2">
-          <Label
-            htmlFor="email"
-            text="Email"
-          />
+          <Label htmlFor="email" text="Email" />
           <Input
             type="email"
             name="email"
@@ -43,10 +37,7 @@ export const RegisterForm = () => {
 
         {/* Password */}
         <div className="mt-2">
-          <Label
-            htmlFor="password"
-            text="Password"
-          />
+          <Label htmlFor="password" text="Password" />
           <Input
             type="password"
             name="password"
@@ -58,10 +49,7 @@ export const RegisterForm = () => {
 
         {/* Confirm Password */}
         <div className="mt-2">
-          <Label
-            htmlFor="confirmPassword"
-            text="Confirm Password"
-          />
+          <Label htmlFor="confirmPassword" text="Confirm Password" />
           <Input
             type="password"
             name="confirmPassword"

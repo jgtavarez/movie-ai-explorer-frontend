@@ -1,7 +1,7 @@
-import { getAllBlogs } from "@/actions/blogs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { getAllBlogs } from "../../../../../actions/blogs";
 
 export const LatestBlogsSection = async () => {
   const blogs = await getAllBlogs();

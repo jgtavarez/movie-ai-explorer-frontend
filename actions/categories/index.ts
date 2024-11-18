@@ -1,7 +1,8 @@
 "use server";
-import { Category } from "@/interfaces/entities/Category";
-import { authFetch } from "@/lib/api";
-import { getCacheKey } from "@/lib/auth";
+
+import { Category } from "../../interfaces/entities/Category";
+import { authFetch } from "../../lib/api";
+import { getCacheKey } from "../../lib/auth";
 
 const CACHE_KEY = "categories";
 

@@ -1,12 +1,13 @@
 "use server";
+
+import { revalidateTag } from "next/cache";
 import {
   Favorite,
   GetAllFavoritesParams,
   ToggleFavoriteInput,
-} from "@/interfaces/entities/Favorite";
-import { authFetch } from "@/lib/api";
-import { getCacheKey } from "@/lib/auth";
-import { revalidateTag } from "next/cache";
+} from "../../interfaces/entities/Favorite";
+import { authFetch } from "../../lib/api";
+import { getCacheKey } from "../../lib/auth";
 
 const CACHE_KEY = "favorites";
 

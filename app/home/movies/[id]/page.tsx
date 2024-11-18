@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { Breadcrumb } from "@/components/Breadcrumb";
-import { getMovie } from "@/actions/movies";
 import { SecondaryColumn } from "./ui/SecondaryColumn";
-import { LoadingIcon } from "@/components/icons";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import { LoadingIcon } from "../../../../components/icons";
+import { getMovie } from "../../../../actions/movies";
+import { Breadcrumb } from "../../../../components/Breadcrumb";
 
 // load recommendations ui lazy
 const AiReview = dynamic(() => import("./ui/AiReview/index"), {

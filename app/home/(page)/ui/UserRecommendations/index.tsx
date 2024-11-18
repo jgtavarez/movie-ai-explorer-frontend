@@ -1,7 +1,7 @@
-import { getUserRecommendedMovies } from "@/actions/user";
-import { MovieCard } from "@/app/home/movies/ui/MovieCard";
-import { SparkleIcon } from "@/components/icons";
 import React from "react";
+import { getUserRecommendedMovies } from "../../../../../actions/user";
+import { SparkleIcon } from "../../../../../components/icons";
+import { MovieCard } from "../../../movies/ui/MovieCard";
 
 export const UserRecommendations = async () => {
   const userRecommendedMovies = await getUserRecommendedMovies();

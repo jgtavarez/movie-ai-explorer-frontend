@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { getAllBlogsPaths, getBlog } from "@/actions/blogs";
-import { formatDate } from "@/lib/time";
 import Image from "next/image";
+import { getAllBlogsPaths, getBlog } from "../../../../actions/blogs";
+import { formatDate } from "../../../../lib/time";
 
 interface Props {
   params: { slug: string };
