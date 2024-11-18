@@ -1,9 +1,9 @@
 "use server";
-import { AuthResponse, LoginInput } from "@/interfaces/auth";
-import { createSession } from "@/lib/auth";
-import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { AuthResponse, LoginInput } from "../../interfaces/auth";
+import { baseApi, DataError } from "../../lib/axios";
+import { createSession } from "../../lib/auth";
 
 const LOGIN_SCHEMA = z.object({
   email: z.string().email({ message: "Invalid email" }).trim(),

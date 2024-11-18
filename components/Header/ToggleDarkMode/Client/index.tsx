@@ -1,5 +1,6 @@
 "use client";
-import { MoonIcon } from "@/components/icons";
+
+import { MoonIcon } from "../../../icons";
 
 interface Props {
   action: () => void;

@@ -1,6 +1,6 @@
-import { getCategories } from "@/actions/categories";
+import { getCategories } from "../../../../actions/categories";
+import { getUser, updateUser } from "../../../../actions/user";
 import { SelectCategories } from "./ui/SelectCategories";
-import { getUser, updateUser } from "@/actions/user";
 
 export default async function CategoriesPage() {
   const categories = await getCategories();

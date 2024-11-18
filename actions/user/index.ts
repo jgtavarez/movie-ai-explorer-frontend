@@ -1,9 +1,9 @@
 "use server";
-import { MovieResp } from "@/interfaces/api";
-import { UpdateUserInput, User } from "@/interfaces/entities/User";
-import { authFetch } from "@/lib/api";
-import { getCacheKey } from "@/lib/auth";
 import { revalidateTag } from "next/cache";
+import { UpdateUserInput, User } from "../../interfaces/entities/User";
+import { authFetch } from "../../lib/api";
+import { getCacheKey } from "../../lib/auth";
+import { MovieResp } from "../../interfaces/api";
 
 const CACHE_KEY = "user";
 

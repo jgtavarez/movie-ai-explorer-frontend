@@ -1,12 +1,12 @@
 "use client";
-import { toggleFavorite } from "@/actions/favorites";
-import { ClockIcon, FavoriteIcon } from "@/components/icons";
-import { Modal } from "@/components/Modal";
-import { MovieImage } from "@/components/MovieImage";
-import { useModal } from "@/hooks/useModal";
-import { Favorite } from "@/interfaces/entities/Favorite";
-import { formatDate, timeAgo } from "@/lib/time";
 import Link from "next/link";
+import { Favorite } from "../../../../../interfaces/entities/Favorite";
+import { useModal } from "../../../../../hooks/useModal";
+import { MovieImage } from "../../../../../components/MovieImage";
+import { ClockIcon, FavoriteIcon } from "../../../../../components/icons";
+import { formatDate, timeAgo } from "../../../../../lib/time";
+import { Modal } from "../../../../../components/Modal";
+import { toggleFavorite } from "../../../../../actions/favorites";
 
 interface Props {
   favorite: Favorite;

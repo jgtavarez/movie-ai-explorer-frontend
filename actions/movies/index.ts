@@ -1,9 +1,9 @@
 "use server";
-import { AiReview } from "@/interfaces/ai";
-import { MovieResp, MovieSearch, MoviesResp } from "@/interfaces/api";
-import { GetAllMoviesParams } from "@/interfaces/entities/Movie";
-import { authFetch, InitOptions, Options } from "@/lib/api";
 import { notFound } from "next/navigation";
+import { authFetch, InitOptions, Options } from "../../lib/api";
+import { GetAllMoviesParams } from "../../interfaces/entities/Movie";
+import { MovieResp, MovieSearch, MoviesResp } from "../../interfaces/api";
+import { AiReview } from "../../interfaces/ai";
 
 export const getMovies = async (
   getAllMoviesParams: GetAllMoviesParams,

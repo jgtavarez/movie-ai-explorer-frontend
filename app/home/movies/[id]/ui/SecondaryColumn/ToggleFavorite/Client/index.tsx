@@ -1,9 +1,9 @@
 "use client";
-import { Button } from "@/components/ui";
-import { useOptimistic } from "@/hooks/useOptimistic";
-import { Favorite, ToggleFavoriteInput } from "@/interfaces/entities/Favorite";
 import clsx from "clsx";
 import { useParams } from "next/navigation";
+import { Favorite, ToggleFavoriteInput } from "../../../../../../../../interfaces/entities/Favorite";
+import { useOptimistic } from "../../../../../../../../hooks/useOptimistic";
+import { Button } from "../../../../../../../../components/ui";
 
 interface Props {
   favorite: boolean;

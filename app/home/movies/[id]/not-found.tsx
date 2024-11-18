@@ -1,4 +1,4 @@
-import { NotFoundScreen } from "@/components/NotFoundScreen";
+import { NotFoundScreen } from "../../../../components/NotFoundScreen";
 
 export default function NotFound() {
   return <NotFoundScreen />;

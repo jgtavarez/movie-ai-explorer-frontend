@@ -1,8 +1,8 @@
 "use server";
 import { promises as fs } from "fs";
 import { notFound } from "next/navigation";
-import { Blog } from "@/interfaces/entities/Blog";
 import path from "path";
+import { Blog } from "../../interfaces/entities/Blog";
 
 export const getBlog = async (slug: string): Promise<Blog> => {
   try {

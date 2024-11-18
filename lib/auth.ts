@@ -2,7 +2,7 @@ import "server-only";
 import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { cache } from "react";
-import { AuthResponse } from "@/interfaces/auth";
+import { AuthResponse } from "../interfaces/auth";
 
 const encodedKey = new TextEncoder().encode(process.env.AUTH_SECRET);
 

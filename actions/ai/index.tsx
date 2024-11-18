@@ -1,6 +1,7 @@
 "use server";
-import { ChatBotParams } from "@/interfaces/ai";
-import { authFetch } from "@/lib/api";
+
+import { ChatBotParams } from "../../interfaces/ai";
+import { authFetch } from "../../lib/api";
 
 export const chatBotApi = async ({ prompt }: ChatBotParams) => {
   const params = new URLSearchParams({

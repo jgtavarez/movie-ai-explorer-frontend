@@ -1,7 +1,7 @@
-import { Blog } from "@/interfaces/entities/Blog";
-import { timeAgo } from "@/lib/time";
 import Link from "next/link";
 import React from "react";
+import { Blog } from "../../../../../interfaces/entities/Blog";
+import { timeAgo } from "../../../../../lib/time";
 
 interface Props {
   blog: Blog;

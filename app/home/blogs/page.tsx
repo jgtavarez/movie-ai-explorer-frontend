@@ -1,6 +1,6 @@
-import { Container } from "@/components/layouts/Container";
+import { getAllBlogs } from "../../../actions/blogs";
+import { Container } from "../../../components/layouts/Container";
 import { BlogCard } from "./ui/BlogCard";
-import { getAllBlogs } from "@/actions/blogs";
 
 export default async function BlogsPage() {
   const blogs = await getAllBlogs();
