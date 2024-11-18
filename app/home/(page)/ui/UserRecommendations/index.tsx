@@ -1,4 +1,3 @@
-import React from "react";
 import { getUserRecommendedMovies } from "../../../../../actions/user";
 import { MovieCard } from "../../../movies/ui/MovieCard";
 import { SparkleIcon } from "../../../../../components/icon";

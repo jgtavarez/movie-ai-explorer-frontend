@@ -13,10 +13,12 @@ export default async function ProfilePage() {
       <section className="relative block h-500-px h-96 ">
         <div className="relative top-0 w-full h-full">
           <Image
-            src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80"
-            alt="Profile Background image"
+            src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80"
+            alt="Profile background image"
             layout="fill"
-            objectFit="cover"
+            style={{
+              objectFit: "cover",
+            }}
             quality={80}
             priority
           />
