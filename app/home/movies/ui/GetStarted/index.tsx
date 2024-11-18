@@ -1,4 +1,5 @@
 import { ArrowIcon, RocketIcon } from "@/components/icons";
+import Link from "next/link";
 
 export const GetStarted = () => {
   return (
@@ -16,15 +17,15 @@ export const GetStarted = () => {
           </p>
         </div>
         <div className="p-6 pt-0">
-          <a href="#" className="inline-block">
+          <Link href={"/home/movies?search=Star+Wars"} className="inline-block">
             <button
               className="title-theme flex items-center gap-2 px-4 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
               type="button"
             >
-              Learn More
+              Show Me
               <ArrowIcon />
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

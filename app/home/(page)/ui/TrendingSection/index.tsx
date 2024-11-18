@@ -4,7 +4,7 @@ import React from "react";
 
 export const TrendingSection = async () => {
   const { movies: trendingMovies } = await getMovies({
-    search: "food",
+    search: "Avengers",
     page: "1",
   });
 

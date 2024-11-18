@@ -1,4 +1,5 @@
 "use server";
+import { AiReview } from "@/interfaces/ai";
 import { MovieResp, MovieSearch, MoviesResp } from "@/interfaces/api";
 import { GetAllMoviesParams } from "@/interfaces/entities/Movie";
 import { authFetch, InitOptions, Options } from "@/lib/api";
@@ -62,6 +63,19 @@ export const getRecommendedMovies = async (
 ): Promise<MovieResp[]> => {
   const data: MovieResp[] = await authFetch(
     `${process.env.SERVER_URL}/movies/recommendations/${imdbId}`,
+    {
+      next: {
+        revalidate: 60 * 60 * 24, // 24h
+      },
+    }
+  ).then((res) => res.json());
+
+  return data;
+};
+
+export const getAiReview = async (imdbId: string): Promise<AiReview> => {
+  const data: AiReview = await authFetch(
+    `${process.env.SERVER_URL}/movies/review/${imdbId}`,
     {
       next: {
         revalidate: 60 * 60 * 24, // 24h

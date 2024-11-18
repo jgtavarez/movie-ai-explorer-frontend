@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const GenerateStars = ({ stars }: Props) => {
-  const rating = Math.max(1, Math.min(5, stars));
+  const rating = Math.max(0, Math.min(5, stars));
 
   return (
     <div className="flex items-center">
