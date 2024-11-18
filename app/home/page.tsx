@@ -1,5 +1,5 @@
-import { MightLikeSection } from "./(page)/ui/MightLikeSection";
 import { TrendingSection } from "./(page)/ui/TrendingSection";
+import { UserRecommendations } from "./(page)/ui/UserRecommendations";
 
 export default async function HomePage() {
   return (
@@ -95,7 +95,7 @@ export default async function HomePage() {
           </div>
         </div>
         <TrendingSection />
-        <MightLikeSection />
+        <UserRecommendations />
       </div>
     </main>
   );

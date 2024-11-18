@@ -1,13 +1,10 @@
-import { getMovies } from "@/actions/movies";
+import { getUserRecommendedMovies } from "@/actions/user";
 import { MovieCard } from "@/app/home/movies/ui/MovieCard";
 import { SparkleIcon } from "@/components/icons";
 import React from "react";
 
-export const MightLikeSection = async () => {
-  const { movies: trendingMovies } = await getMovies({
-    search: "food",
-    page: "1",
-  });
+export const UserRecommendations = async () => {
+  const userRecommendedMovies = await getUserRecommendedMovies();
 
   return (
     <section className="mt-16">
@@ -17,8 +14,8 @@ export const MightLikeSection = async () => {
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        {trendingMovies.slice(0, 4).map((trendingMovie) => (
-          <MovieCard key={trendingMovie.imdbID} movie={trendingMovie} />
+        {userRecommendedMovies.map((movie) => (
+          <MovieCard key={movie.imdbID} movie={movie} />
         ))}
       </div>
     </section>

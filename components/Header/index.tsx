@@ -15,10 +15,6 @@ export const Header = () => {
       href: "/home/movies",
     },
     {
-      text: "Blogs",
-      href: "/home/blogs",
-    },
-    {
       text: "Favorites",
       href: "/home/favorites",
     },

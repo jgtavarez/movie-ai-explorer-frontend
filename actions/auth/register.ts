@@ -59,7 +59,7 @@ export async function registerAction(
       ...parsedCredentials.data,
     });
     await createSession({ id: user.id, jwt });
-    redirect("/home");
+    redirect("/home/profile/categories");
   } catch (error: any) {
     if (error?.message === "NEXT_REDIRECT") {
       throw error;
