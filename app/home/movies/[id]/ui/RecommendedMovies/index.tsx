@@ -1,5 +1,5 @@
 import { getRecommendedMovies } from "../../../../../../actions/movies";
-import { SparkleIcon } from "../../../../../../components/icons/SparkleIcon";
+import { SparkleIcon } from "../../../../../../components/icons";
 import { MovieCard } from "../../../ui/MovieCard";
 
 interface Props {
