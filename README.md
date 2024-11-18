@@ -144,7 +144,7 @@ How to install and running the app.
 - Start production mode:
 
 ```bash
-   npm start
+   npm run start
 ```
 
 - Unit tests:
