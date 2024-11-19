@@ -3,19 +3,19 @@
   <h3 align="center">Movie Explorer with AI Enhancements</h3> 
 </div>
 
+# Features 🌟
+
+<img src=".github/features.png" alt="features" />
+
 # Technologies ⚙️
 
 Core technologies used..
 
-- This project was generated with [Nest.js](https://nestjs.com) version 14.2.17
-
-- For the requests [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-
-- For the validations [Zod](https://zod.dev) version 3.23.8
-
-- For encryption, decryption, jwt and cookies [jose](https://www.npmjs.com/package/jose) version 5.9.3
-
-- For styles [tailwindcss](https://tailwindcss.com) version^3.4.1
+- [Next.js 14](https://nextjs.org) with App Router for server-first architecture
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for the requests
+- [TailwindCss](https://tailwindcss.com) for styles 
+- [Zod](https://zod.dev) for robust type validation
+- [Jose](https://www.npmjs.com/package/jose) for encryption, decryption, jwt and cookies
 
 # Project Structure 📐
 
@@ -62,7 +62,7 @@ Most relevant files and directories are:
 
 ### Git flow
 
-Push to **main** branch deploy to `PROD`
+Push to **main** branch deploy to `PROD` via AWS Amplify
 
 - Deploy to [PROD](https://main.d1ugsktwkzh3x3.amplifyapp.com/)
 
@@ -92,10 +92,17 @@ How to install and running the app.
   npm install
 ```
 
+- Create .env file
+
+```bash
+   cp .env.template .env
+   # then set your env values
+```
+
 - Start development mode
 
 ```bash
-  npm run dev #(make sure to set your env values first)
+  npm run dev
 ```
 
 > Navigate to `http://localhost:3000`
@@ -119,13 +126,17 @@ This application leverages the [Server and Client Composition Patterns](https://
   - **`error.tsx`**: Manages unexpected errors within specific routes.
 
 - **Data Sharing Between Components**:  
-  Instead of relying on `useContext` or other client-side state management tools, the application takes advantage of [fetch](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#sharing-data-between-components). Data fetched for a page is shared seamlessly across components without duplicating requests cause in next14 cache is stored by default. This approach avoids the need to move components to the client unnecessarily.
-  By reusing cached data, the application improves performance and reduces the overhead of additional client-side state management.
+  Im not a big fan on `useContext` or other client-side state management tools in server-first applications even Next [dont recommend it](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#sharing-data-between-components), the application takes advantage of [fetch](https://nextjs.org/docs/14/app/api-reference/functions/fetch) and caching. Data fetched for a page is shared seamlessly across components without duplicating requests cause in next14 cache is stored by default. This approach avoids the need to move components to the client unnecessarily using.
+  By reusing cached data, the application improves performance and reduces the overhead of additional client-side state management useContext, useReducer, useState, useEffect.
 
 - **Server Actions**:
 
 The application employs server actions for handling HTTP requests and others server-side logic. These actions encapsulate business logic and are invoked:
 Directly in server-side components making it asynchronous and in event handlers in client-side components, enabling  integration of server-side functionality with client-side interactivity when necessary.
+
+- **Static Generation**:
+
+Blog pages are created in the build time and are rendered on the server.
 
 ---
 
