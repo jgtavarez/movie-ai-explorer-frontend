@@ -51,6 +51,8 @@ export const LatestBlogsSection = async () => {
               src={blog.image}
               alt={blog.title}
               fill
+              priority
+              sizes="(max-width: 768px) 100vw, 1200px"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center h-full">

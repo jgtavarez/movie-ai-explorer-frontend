@@ -7,7 +7,7 @@ export const Button = ({ text, ...props }: Props) => {
   return (
     <button
       {...restProps}
-      className={`w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none disabled:bg-blue-400 ${className}`}
+      className={`w-full px-5 py-2.5 tracking-wide text-white text-sm transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none disabled:bg-blue-400 ${className}`}
     >
       {text}
     </button>

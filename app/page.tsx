@@ -1,5 +1,21 @@
-import { redirect } from "next/navigation";
+import { Hero } from "./ui/Hero";
+import { Features } from "./ui/Features";
+import { About } from "./ui/About";
+import { Stats } from "./ui/Stats";
+import { CTA } from "./ui/CTA";
+import { Footer } from "./ui/Footer";
+import { Header } from "../components/Header";
 
 export default function Home() {
-  redirect("/auth/login");
+  return (
+    <section className="bg-gray-200">
+      <Header />
+      <Hero />
+      <Features />
+      <About />
+      <Stats />
+      <CTA />
+      <Footer />
+    </section>
+  );
 }
