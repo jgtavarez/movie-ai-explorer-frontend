@@ -18,7 +18,7 @@ export const ToggleFavoriteClient = ({ favorite, action }: Props) => {
 
   const handleClick = async () => {
     setOptimisticFavorite((prev) => !prev);
-    await handleOptimisticUpdate(() => action({ imdb_id: id as string }));
+    await handleOptimisticUpdate(() => action({ imdbId: id as string }));
   };
 
   return (

@@ -3,7 +3,7 @@ import { PaginationParams } from "../pagination";
 import { BaseEntity } from "./BaseEntity";
 
 export interface Movie extends BaseEntity {
-  imdb_id: string;
+  imdbId: string;
   title: string;
   poster: string;
 }

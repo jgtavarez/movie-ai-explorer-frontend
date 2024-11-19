@@ -60,7 +60,7 @@ export const SecondaryColumn = ({ movie }: Props) => {
           </div>
         </div>
 
-        <ToggleFavorite imdb_id={movie.imdbID} />
+        <ToggleFavorite imdbId={movie.imdbID} />
       </div>
     </div>
   );

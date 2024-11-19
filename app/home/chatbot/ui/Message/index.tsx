@@ -27,14 +27,14 @@ export const Message = ({ message }: Props) => {
           )}
         </div>
       </span>
-      <p className="leading-relaxed">
-        <span className="block font-bold title-theme">
+      <div className={`leading-relaxed ${message.isUser ? "text-right" : "text-left"}`}>
+        <span className={"block font-bold title-theme"}>
           {message.isUser ? "You" : "AI"}
         </span>
         <span className="description-theme">
           <Markdown>{message.text}</Markdown>
         </span>
-      </p>
+      </div>
     </div>
   );
 };

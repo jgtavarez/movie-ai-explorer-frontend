@@ -1,6 +1,6 @@
 import { getRecommendedMovies } from "../../../../../../actions/movies";
 import { SparkleIcon } from "../../../../../../components/icon";
-import { MovieCard } from "../../../ui/MovieCard";
+import { MovieCard } from "../../../../../../components/MovieCard";
 
 interface Props {
   imdbId: string;

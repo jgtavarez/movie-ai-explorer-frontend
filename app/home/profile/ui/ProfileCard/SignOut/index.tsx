@@ -1,5 +1,5 @@
 "use client";
-import { signout } from "../../../../../actions/auth/signout";
+import { signout } from "../../../../../../actions/auth/signout";
 
 export const SignOut = () => {
   return (

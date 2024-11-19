@@ -14,5 +14,5 @@ export interface GetAllFavoritesParams {
 }
 
 export interface ToggleFavoriteInput {
-  imdb_id: string;
+  imdbId: string;
 }

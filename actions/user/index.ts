@@ -26,7 +26,8 @@ export const updateUser = async (
     body: JSON.stringify({ ...updateUserInput }),
   }).then((res) => res.json());
 
-  revalidateTag(await getCacheKey(CACHE_KEY)); // force revalidate
+  revalidateTag(await getCacheKey(CACHE_KEY)); // revalidate user data
+  revalidateTag(await getCacheKey(`${CACHE_KEY}:recommendations`)); // revalidate user recommendations
 
   return data;
 };
@@ -36,6 +37,7 @@ export const getUserRecommendedMovies = async (): Promise<MovieResp[]> => {
     `${process.env.SERVER_URL}/user/recommendations`,
     {
       next: {
+        tags: [await getCacheKey(`${CACHE_KEY}:recommendations`)],
         revalidate: 60 * 60 * 24, // 24h
       },
     }

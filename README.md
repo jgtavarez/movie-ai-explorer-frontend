@@ -64,7 +64,7 @@ Most relevant files and directories are:
 
 Push to **main** branch deploy to `PROD`
 
-- Deploy to [PROD](https://movie-ai-explorer-frontend.vercel.app/api)
+- Deploy to [PROD](https://main.d1ugsktwkzh3x3.amplifyapp.com/)
 
 # Getting started 💥
 

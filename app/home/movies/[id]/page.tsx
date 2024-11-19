@@ -80,6 +80,7 @@ export default async function MoviePage({ params }: Props) {
               alt={movie.Title}
               width={300}
               height={400}
+              priority
               className="rounded-2xl transition-transform duration-300 transform group-hover:scale-105 object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

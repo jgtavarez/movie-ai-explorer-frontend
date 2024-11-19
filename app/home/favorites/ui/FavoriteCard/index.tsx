@@ -36,7 +36,7 @@ export const FavoriteCard = ({ favorite }: Props) => {
             <FavoriteIcon />
           </div>
           <Link
-            href={`/home/movies/${favorite.movie.imdb_id}`}
+            href={`/home/movies/${favorite.movie.imdbId}`}
             className="flex justify-center items-center bg-red-700 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100"
           >
             {"See more >>"}
@@ -46,7 +46,7 @@ export const FavoriteCard = ({ favorite }: Props) => {
         <div className="flex justify-between items-start w-full pb-4">
           <div>
             <p className="text-sm font-semibold title-theme">
-              IMDb: {favorite.movie.imdb_id}
+              IMDb: {favorite.movie.imdbId}
             </p>
             <p className="text-sm text-gray-500 description-theme">
               Added on {formatDate(favorite.created_at)}
@@ -69,7 +69,7 @@ export const FavoriteCard = ({ favorite }: Props) => {
           description={`Are you sure you want to delete <strong>${favorite.movie.title}</strong> from your favorite movie list?`}
           onCancel={() => setOpen(false)}
           onConfirm={async () => {
-            await toggleFavorite({ imdb_id: favorite.movie.imdb_id });
+            await toggleFavorite({ imdbId: favorite.movie.imdbId });
             setOpen(false);
           }}
         />

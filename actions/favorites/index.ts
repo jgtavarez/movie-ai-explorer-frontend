@@ -36,27 +36,34 @@ export const getFavorites = async (
   };
 };
 
-export const toggleFavorite = async (
-  toggleFavoriteInput: ToggleFavoriteInput
-): Promise<Favorite> => {
-  const { imdb_id } = toggleFavoriteInput;
-  const data: Favorite = await authFetch(
-    `${process.env.SERVER_URL}/favorites`,
+export const getFavorite = async (imdbId: string): Promise<boolean> => {
+  const data: boolean = await authFetch(
+    `${process.env.SERVER_URL}/favorites/${imdbId}`,
     {
-      method: "POST",
-      body: JSON.stringify({ imdb_id }),
+      next: {
+        tags: [await getCacheKey(`${CACHE_KEY}:${imdbId}`)],
+        revalidate: 7 * 24 * 60 * 60, // 7d
+      },
     }
   ).then((res) => res.json());
-
-  revalidateTag(await getCacheKey(CACHE_KEY)); // force revalidate
 
   return data;
 };
 
-export const getFavorite = async (imdb_id: string): Promise<boolean> => {
-  const data: boolean = await authFetch(
-    `${process.env.SERVER_URL}/favorites/${imdb_id}`
+export const toggleFavorite = async (
+  toggleFavoriteInput: ToggleFavoriteInput
+): Promise<Favorite> => {
+  const { imdbId } = toggleFavoriteInput;
+  const data: Favorite = await authFetch(
+    `${process.env.SERVER_URL}/favorites`,
+    {
+      method: "POST",
+      body: JSON.stringify({ imdbId }),
+    }
   ).then((res) => res.json());
+
+  revalidateTag(await getCacheKey(CACHE_KEY)); // revalidate getFavorites
+  revalidateTag(await getCacheKey(`${CACHE_KEY}:${imdbId}`)); // revalidate getFavorite
 
   return data;
 };
