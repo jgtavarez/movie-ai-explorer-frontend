@@ -14,7 +14,6 @@ export const chatBotApi = async function* (
         "Content-Type": "application/json",
       },
     });
-    console.log(data);
 
     if (!data.ok) {
       throw new Error();
