@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { MovieImage } from "../../../../../components/MovieImage";
-import { MovieSearch } from "../../../../../interfaces/api";
+import { MovieImage } from "../MovieImage";
+import { MovieSearch } from "../../interfaces/api";
 
 interface Props {
   movie: MovieSearch;

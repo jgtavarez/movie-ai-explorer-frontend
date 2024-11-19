@@ -27,8 +27,8 @@ export const Message = ({ message }: Props) => {
           )}
         </div>
       </span>
-      <div className="leading-relaxed">
-        <span className="block font-bold title-theme">
+      <div className={`leading-relaxed ${message.isUser ? "text-right" : "text-left"}`}>
+        <span className={"block font-bold title-theme"}>
           {message.isUser ? "You" : "AI"}
         </span>
         <span className="description-theme">
