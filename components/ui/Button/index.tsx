@@ -21,7 +21,13 @@ export const Button = ({
         variant === "primary"
           ? "bg-blue-500 hover:bg-blue-400 active:bg-blue-600 disabled:bg-blue-400 text-sm"
           : "bg-pink-500 hover:bg-pink-400 active:bg-pink-600 disabled:bg-pink-400 text-xs uppercase font-bold"
-      } text-white px-5 duration-200 transition-colors rounded-md focus:outline-none w-full disabled:cursor-wait py-2.5 hover:shadow-md shadow transform tracking-wide ${className}`}
+      } text-white px-5 duration-200 transition-colors rounded-md focus:outline-none w-full  ${
+        loading
+          ? "cursor-wait"
+          : props.disabled
+          ? "cursor-not-allowed"
+          : "cursor-default"
+      } py-2.5 hover:shadow-md shadow transform tracking-wide ${className}`}
     >
       {loading ? (
         <div className="flex justify-center w-full">
