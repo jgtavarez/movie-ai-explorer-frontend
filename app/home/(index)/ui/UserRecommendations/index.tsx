@@ -2,7 +2,7 @@ import { getUserRecommendedMovies } from "../../../../../actions/user";
 import { SparkleIcon } from "../../../../../components/icon";
 import { MovieCard } from "../../../../../components/MovieCard";
 
-export const UserRecommendations = async () => {
+export default async function UserRecommendations() {
   const userRecommendedMovies = await getUserRecommendedMovies();
 
   if (!userRecommendedMovies.length) {

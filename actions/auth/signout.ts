@@ -4,5 +4,5 @@ import { deleteSession } from "../../lib/auth";
 
 export const signout = () => {
   deleteSession();
-  redirect("/auth/login");
+  redirect("/");
 };

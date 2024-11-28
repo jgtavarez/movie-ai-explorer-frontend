@@ -1,31 +1,12 @@
 import Image from "next/image";
 import { SecondaryColumn } from "./ui/SecondaryColumn";
-import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { getMovie } from "../../../../actions/movies";
 import { Breadcrumb } from "../../../../components/Breadcrumb";
-import { LoadingIcon } from "../../../../components/icon/LoadingIcon";
-
-// load recommendations ui lazy
-const AiReview = dynamic(() => import("./ui/AiReview/index"), {
-  loading: () => (
-    <div className="mx-auto px-4 lg:max-w-7xl mt-14 mb-12 flex justify-start items-center space-x-1 text-sm title-theme">
-      <LoadingIcon />
-      <div>Loading...</div>
-    </div>
-  ),
-});
-const RecommendedMovies = dynamic(
-  () => import("./ui/RecommendedMovies/index"),
-  {
-    loading: () => (
-      <div className="mx-auto px-4 lg:max-w-7xl mt-14 mb-12 flex justify-start items-center space-x-1 text-sm title-theme">
-        <LoadingIcon />
-        <div>Loading...</div>
-      </div>
-    ),
-  }
-);
+import { Suspense } from "react";
+import AiReview from "./ui/AiReview";
+import RecommendedMovies from "./ui/RecommendedMovies";
+import { LoadingIcon } from "@/components/icon";
 
 interface Props {
   params: { id: string };
@@ -47,6 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 }
+
+const AiLazySectionLoading = () => (
+  <div className="mx-auto px-4 lg:max-w-7xl mt-14 mb-12 flex justify-start items-center space-x-1 text-sm title-theme">
+    <LoadingIcon />
+    <div>Loading...</div>
+  </div>
+);
 
 export default async function MoviePage({ params }: Props) {
   const movie = await getMovie(params.id);
@@ -128,15 +116,23 @@ export default async function MoviePage({ params }: Props) {
           </section>
         </div>
 
-        {/* Column */}
-        <AiReview imdbId={movie.imdbID} />
+        {/* AI Review lazy */}
+        <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+          <section className="border-t border-gray-200 pt-10 lg:pt-16">
+            <Suspense fallback={<AiLazySectionLoading />}>
+              <AiReview imdbId={movie.imdbID} />
+            </Suspense>
+          </section>
+        </div>
       </div>
 
-      {/* Recommended Movies */}
+      {/* AI Recommended Movies lazy */}
       <div className="mx-auto px-4 lg:max-w-7xl mt-14 mb-12">
         <hr />
       </div>
-      <RecommendedMovies imdbId={movie.imdbID} />
+      <Suspense fallback={<AiLazySectionLoading />}>
+        <RecommendedMovies imdbId={movie.imdbID} />
+      </Suspense>
     </section>
   );
 }

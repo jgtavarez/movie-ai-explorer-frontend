@@ -26,14 +26,13 @@ export async function decrypt(session: string | undefined = "") {
     });
     return payload as { id: string; jwt: string };
   } catch (error) {
-    console.log("Session not valid: ", error);
+    console.error("Session not valid: ", error);
   }
 }
 
 export async function createSession(payload: CookiesPayload) {
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
   const session = await encrypt({ ...payload }, expires);
-  console.log("session", session);
 
   cookies().set("session", session, {
     httpOnly: true,

@@ -1,5 +1,9 @@
-import { FavoriteIcon, SparkleIcon, StarIcon } from "../../../components/icon";
-import { BlogsIcon } from "../../../components/icon/BlogsIcon";
+import {
+  BlogsIcon,
+  FavoriteIcon,
+  SparkleIcon,
+  StarIcon,
+} from "../../../components/icon";
 import { Feature, FeatureCard } from "./FeatureCard";
 
 const FEATURES: Feature[] = [

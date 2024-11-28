@@ -14,15 +14,7 @@ export default async function HomeLayout({
   }
 
   return (
-    <main
-      style={{
-        margin: 0,
-        padding: 0,
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <main className="m-0 p-0 h-screen flex flex-col">
       <Header />
       {children}
     </main>
