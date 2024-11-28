@@ -1,7 +1,7 @@
 "use client";
-import { SearchIcon } from "./SearchIcon";
 import { Input } from "../ui";
 import { useSearch } from "../../hooks/useSearch";
+import { SearchIcon } from "../icon";
 
 export const Search = () => {
   const { handleSearch, searchParams } = useSearch();

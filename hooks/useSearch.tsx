@@ -8,13 +8,16 @@ export const useSearch = () => {
 
   const handleSearch = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams);
+    // Remove the current page when search changes
+    params.delete("page");
+
     if (value) {
       params.set("search", value);
     } else {
       params.delete("search");
     }
     replace(`${pathName}?${params.toString()}`);
-  }, 450);
+  }, 420);
 
   return {
     handleSearch,

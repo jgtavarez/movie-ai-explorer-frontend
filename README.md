@@ -97,6 +97,7 @@ How to install and running the app.
 ```bash
    cp .env.template .env
    # then set your env values
+   # Tip: You can run `openssl rand -base64 32` to generate a secure value for AUTH_SECRET
 ```
 
 - Start development mode

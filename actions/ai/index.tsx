@@ -36,7 +36,7 @@ export const chatBotApi = async function* (
       yield text;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 };

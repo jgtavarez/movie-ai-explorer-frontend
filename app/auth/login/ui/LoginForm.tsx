@@ -64,7 +64,7 @@ export function InputSubmit() {
 
   return (
     <div className="mt-6">
-      <Button text="Sign in" id="submit" type="submit" disabled={pending} />
+      <Button text="Sign in" id="submit" type="submit" loading={pending} />
     </div>
   );
 }

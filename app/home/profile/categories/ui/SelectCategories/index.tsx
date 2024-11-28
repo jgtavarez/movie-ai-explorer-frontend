@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { Category } from "../../../../../../interfaces/entities/Category";
 import {
   UpdateUserInput,
@@ -16,6 +16,7 @@ interface Props {
 }
 
 export const SelectCategories = ({ categories, selected, action }: Props) => {
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] =
     useState<string[]>(selected);
@@ -30,13 +31,25 @@ export const SelectCategories = ({ categories, selected, action }: Props) => {
   };
 
   return (
-    <>
+    <form
+      action={() => {
+        startTransition(async () => {
+          await action({ categories: selectedCategories });
+          router.push("/home/profile");
+        });
+      }}
+    >
       <div className="flex flex-row flex-wrap gap-5 mt-8 justify-center">
         {categories.map((category) => (
-          <div
+          <button
             key={category.id}
+            type="button"
             className={`flex flex-col items-center group gap-2 cursor-pointer`}
-            onClick={() => handleToggleCategory(category.id)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleToggleCategory(category.id);
+            }}
+            disabled={isPending}
           >
             <Image
               alt={category.title}
@@ -52,20 +65,14 @@ export const SelectCategories = ({ categories, selected, action }: Props) => {
             <p className={`capitalize text-gray-600 dark:text-gray-200`}>
               {category.title}
             </p>
-          </div>
+          </button>
         ))}
       </div>
 
       {/* Action */}
-      <div
-        className="px-4 py-1 mt-20"
-        onClick={async () => {
-          await action({ categories: selectedCategories });
-          router.push("/home/profile");
-        }}
-      >
-        <Button text="Save Preferences" />
+      <div className="mt-20 w-60 mx-auto">
+        <Button type="submit" text="Save Preferences" loading={isPending} />
       </div>
-    </>
+    </form>
   );
 };
