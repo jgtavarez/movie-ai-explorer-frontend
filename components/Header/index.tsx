@@ -1,13 +1,12 @@
 "use client";
 import Link from "next/link";
-import { CustomLink } from "./CustomLink";
-import { ToggleDarkMode } from "./ToggleDarkMode";
 import { useState } from "react";
-import { ProfileIcon } from "../icon/ProfileIcon";
 import { usePathname } from "next/navigation";
-import { Button } from "../ui";
 import { Logo } from "./Logo";
-import { MobileMenuIcon } from "../icon";
+import { ToggleDarkMode } from "./ToggleDarkMode";
+import { MobileMenuIcon, ProfileIcon } from "../icon";
+import { Button } from "../ui";
+import { CustomLink } from "./CustomLink";
 
 const links = [
   {

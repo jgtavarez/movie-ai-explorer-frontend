@@ -20,12 +20,14 @@ export const metadata: Metadata = {
     "Movie Explorer with AI Enhancements - Search, discover and explore movies with AI-powered features",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const themeCookie = cookies().get("theme");
+export default async function RootLayout(
+  {
+    children,
+  }: Readonly<{
+    children: React.ReactNode;
+  }>
+) {
+  const themeCookie = (await cookies()).get("theme");
   const theme = themeCookie?.value || "light";
 
   return (

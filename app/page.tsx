@@ -1,10 +1,10 @@
+import { Header } from "@/components/Header";
 import { Hero } from "./ui/Hero";
 import { Features } from "./ui/Features";
 import { About } from "./ui/About";
 import { Stats } from "./ui/Stats";
 import { CTA } from "./ui/CTA";
 import { Footer } from "./ui/Footer";
-import { Header } from "../components/Header";
 
 export default function Home() {
   return (

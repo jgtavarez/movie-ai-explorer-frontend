@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
+import { AuthResponse, RegisterInput } from "@/interfaces/auth";
+import { createSession } from "@/lib/auth";
+import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { AuthResponse, RegisterInput } from "../../interfaces/auth";
-import { createSession } from "../../lib/auth";
-import { baseApi, DataError } from "../../lib/axios";
 
 const REGISTER_SCHEMA = z
   .object({
@@ -31,33 +31,25 @@ const REGISTER_SCHEMA = z
     }
   });
 
-export const registerApiCall = async (
-  registerInput: RegisterInput
-): Promise<AuthResponse> => {
-  const response = await baseApi.post("/auth/register", registerInput);
-  return response.data;
-};
-
-export async function registerAction(
-  prevState: string | undefined,
-  formData: FormData
-): Promise<any> {
-  const parsedCredentials = REGISTER_SCHEMA.safeParse({
+export async function register(state: any, formData: FormData): Promise<any> {
+  // Validate form fields
+  const validatedFields = REGISTER_SCHEMA.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
     password: formData.get("password"),
     confirmPassword: formData.get("confirmPassword"),
   });
 
-  if (!parsedCredentials.success) {
+  if (!validatedFields.success) {
     return {
-      errors: parsedCredentials.error.flatten().fieldErrors,
+      errors: validatedFields.error.flatten().fieldErrors,
     };
   }
 
+  // Create user session
   try {
     const { jwt, user } = await registerApiCall({
-      ...parsedCredentials.data,
+      ...validatedFields.data,
     });
     await createSession({ id: user.id, jwt });
     redirect("/home/profile/categories");
@@ -78,3 +70,10 @@ export async function registerAction(
     };
   }
 }
+
+export const registerApiCall = async (
+  registerInput: RegisterInput
+): Promise<AuthResponse> => {
+  const response = await baseApi.post("/auth/register", registerInput);
+  return response.data;
+};

@@ -1,40 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
+import { AuthResponse, LoginInput } from "@/interfaces/auth";
+import { createSession } from "@/lib/auth";
+import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { AuthResponse, LoginInput } from "../../interfaces/auth";
-import { createSession } from "../../lib/auth";
-import { baseApi, DataError } from "../../lib/axios";
 
 const LOGIN_SCHEMA = z.object({
   email: z.string().email({ message: "Invalid email" }).trim(),
   password: z.string().trim().min(1, { message: "Required" }),
 });
 
-export const loginApiCall = async (
-  loginInput: LoginInput
-): Promise<AuthResponse> => {
-  const response = await baseApi.post("/auth/login", loginInput);
-  return response.data;
-};
-
-export async function loginAction(
-  prevState: string | undefined,
-  formData: FormData
-): Promise<any> {
-  const parsedCredentials = LOGIN_SCHEMA.safeParse({
+export async function login(state: any, formData: FormData): Promise<any> {
+  // Validate form fields
+  const validatedFields = LOGIN_SCHEMA.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
 
-  if (!parsedCredentials.success) {
+  if (!validatedFields.success) {
     return {
-      errors: parsedCredentials.error.flatten().fieldErrors,
+      errors: validatedFields.error.flatten().fieldErrors,
     };
   }
 
+  // Create user session
   try {
-    const { jwt, user } = await loginApiCall({ ...parsedCredentials.data });
+    const { jwt, user } = await loginApiCall({ ...validatedFields.data });
     await createSession({ id: user.id, jwt });
     redirect("/home");
   } catch (error: any) {
@@ -54,3 +46,10 @@ export async function loginAction(
     };
   }
 }
+
+export const loginApiCall = async (
+  loginInput: LoginInput
+): Promise<AuthResponse> => {
+  const response = await baseApi.post("/auth/login", loginInput);
+  return response.data;
+};

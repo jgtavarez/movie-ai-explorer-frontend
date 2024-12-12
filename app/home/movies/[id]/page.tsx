@@ -9,10 +9,11 @@ import RecommendedMovies from "./ui/RecommendedMovies";
 import { LoadingIcon } from "@/components/icon";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   try {
     const { imdbID, Title, Plot } = await getMovie(params.id);
 
@@ -36,7 +37,8 @@ const AiLazySectionLoading = () => (
   </div>
 );
 
-export default async function MoviePage({ params }: Props) {
+export default async function MoviePage(props: Props) {
+  const params = await props.params;
   const movie = await getMovie(params.id);
 
   return (
