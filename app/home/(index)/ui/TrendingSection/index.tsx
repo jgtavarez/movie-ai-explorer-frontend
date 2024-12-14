@@ -1,5 +1,5 @@
-import { getMovies } from "../../../../../actions/movies";
-import { MovieCard } from "../../../../../components/MovieCard";
+import { MovieCard } from "@/components/MovieCard";
+import { getMovies } from "@/lib/queries/movies";
 
 export const TrendingSection = async () => {
   const { movies: trendingMovies } = await getMovies({

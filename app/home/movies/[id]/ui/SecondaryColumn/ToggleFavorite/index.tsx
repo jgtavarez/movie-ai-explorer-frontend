@@ -1,5 +1,6 @@
-import { getFavorite, toggleFavorite } from "../../../../../../../actions/favorites";
+import { getFavorite } from "@/lib/queries/favorites";
 import { ToggleFavoriteClient } from "./Client";
+import { toggleFavorite } from "@/lib/actions/favorites";
 
 interface Props {
   imdbId: string;

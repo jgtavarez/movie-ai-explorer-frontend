@@ -1,12 +1,12 @@
 "use client";
+import { ClockIcon, FavoriteIcon } from "@/components/icon";
+import { Modal } from "@/components/Modal";
+import { MovieImage } from "@/components/MovieImage";
+import { useModal } from "@/hooks/useModal";
+import { Favorite } from "@/interfaces/entities/Favorite";
+import { toggleFavorite } from "@/lib/actions/favorites";
+import { formatDate, timeAgo } from "@/lib/time";
 import Link from "next/link";
-import { Favorite } from "../../../../../interfaces/entities/Favorite";
-import { useModal } from "../../../../../hooks/useModal";
-import { MovieImage } from "../../../../../components/MovieImage";
-import { formatDate, timeAgo } from "../../../../../lib/time";
-import { Modal } from "../../../../../components/Modal";
-import { toggleFavorite } from "../../../../../actions/favorites";
-import { FavoriteIcon, ClockIcon } from "../../../../../components/icon";
 
 interface Props {
   favorite: Favorite;
@@ -36,6 +36,7 @@ export const FavoriteCard = ({ favorite }: Props) => {
             <FavoriteIcon />
           </div>
           <Link
+            prefetch={true}
             href={`/home/movies/${favorite.movie.imdbId}`}
             className="flex justify-center items-center bg-red-700 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100"
           >

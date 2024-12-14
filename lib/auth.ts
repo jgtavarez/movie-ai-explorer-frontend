@@ -2,7 +2,7 @@ import "server-only";
 import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { cache } from "react";
-import { AuthResponse } from "../interfaces/auth";
+import { AuthResponse } from "@/interfaces/auth";
 
 const encodedKey = new TextEncoder().encode(process.env.AUTH_SECRET);
 
@@ -33,8 +33,9 @@ export async function decrypt(session: string | undefined = "") {
 export async function createSession(payload: CookiesPayload) {
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
   const session = await encrypt({ ...payload }, expires);
+  const cookieStore = await cookies();
 
-  cookies().set("session", session, {
+  cookieStore.set("session", session, {
     httpOnly: true,
     secure: true,
     expires,
@@ -43,12 +44,13 @@ export async function createSession(payload: CookiesPayload) {
   });
 }
 
-export function deleteSession() {
-  cookies().delete("session");
+export async function deleteSession() {
+  const cookieStore = await cookies();
+  cookieStore.delete("session");
 }
 
 export const verifySession = cache(async () => {
-  const cookie = cookies().get("session")?.value;
+  const cookie = (await cookies()).get("session")?.value;
   const session = await decrypt(cookie);
 
   if (!session?.id) {

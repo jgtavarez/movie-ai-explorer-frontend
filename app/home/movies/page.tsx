@@ -1,11 +1,11 @@
-import { getMovies } from "../../../actions/movies";
-import { Alert } from "../../../components/Alert";
-import { CardGrid } from "../../../components/layouts/CardGrid";
-import { Container } from "../../../components/layouts/Container";
-import { MovieCard } from "../../../components/MovieCard";
-import { Pagination } from "../../../components/Pagination";
-import { Search } from "../../../components/Search";
+import { Alert } from "@/components/Alert";
+import { CardGrid } from "@/components/layouts/CardGrid";
+import { Container } from "@/components/layouts/Container";
+import { MovieCard } from "@/components/MovieCard";
+import { Search } from "@/components/Search";
 import { GetStarted } from "./ui/GetStarted";
+import { Pagination } from "@/components/Pagination";
+import { getMovies } from "@/lib/queries/movies";
 
 export default async function MoviesPage({
   searchParams,

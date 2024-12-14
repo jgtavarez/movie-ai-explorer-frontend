@@ -1,6 +1,5 @@
-"use server";
+import { Blog } from "@/interfaces/entities/Blog";
 import { notFound } from "next/navigation";
-import { Blog } from "../../interfaces/entities/Blog";
 
 export const getBlog = async (slug: string): Promise<Blog> => {
   const blogs = await getAllBlogs();
@@ -13,16 +12,16 @@ export const getBlog = async (slug: string): Promise<Blog> => {
   return data;
 };
 
-export const getAllBlogsPaths = async (): Promise<string[]> => {
+export const getAllBlogsSlugs = async (): Promise<string[]> => {
   const blogs = await getAllBlogs();
 
   return blogs.map((blog) => blog.slug);
 };
 
 export const getAllBlogs = async (): Promise<Blog[]> => {
-  const data: Blog[] = await fetch(`${process.env.CLIENT_URL}/posts.json`).then(
-    (res) => res.json()
-  );
+  const data: Blog[] = await fetch(`${process.env.CLIENT_URL}/posts.json`, {
+    cache: "force-cache",
+  }).then((res) => res.json());
 
   return data;
 };

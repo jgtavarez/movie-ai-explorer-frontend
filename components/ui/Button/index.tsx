@@ -26,7 +26,7 @@ export const Button = ({
           ? "cursor-wait"
           : props.disabled
           ? "cursor-not-allowed"
-          : "cursor-default"
+          : "cursor-pointer"
       } py-2.5 hover:shadow-md shadow transform tracking-wide ${className}`}
     >
       {loading ? (

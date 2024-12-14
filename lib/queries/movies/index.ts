@@ -1,9 +1,8 @@
-"use server";
+import { AiReview } from "@/interfaces/ai";
+import { MovieResp, MovieSearch, MoviesResp } from "@/interfaces/api";
+import { GetAllMoviesParams } from "@/interfaces/entities/Movie";
+import { authFetch, InitOptions, Options } from "@/lib/api";
 import { notFound } from "next/navigation";
-import { authFetch, InitOptions, Options } from "../../lib/api";
-import { GetAllMoviesParams } from "../../interfaces/entities/Movie";
-import { MovieResp, MovieSearch, MoviesResp } from "../../interfaces/api";
-import { AiReview } from "../../interfaces/ai";
 
 export const getMovies = async (
   getAllMoviesParams: GetAllMoviesParams,
@@ -25,14 +24,12 @@ export const getMovies = async (
     page,
   }).toString();
 
-  const data: MoviesResp = await authFetch(
-    `${process.env.SERVER_URL}/movies?${params}`,
-    {
-      next: {
-        revalidate: 7 * 24 * 60 * 60, // 7d
-      },
-    }
-  ).then((res) => res.json());
+  const data: MoviesResp = await authFetch(`/movies?${params}`, {
+    cache: "force-cache",
+    next: {
+      revalidate: 60 * 60 * 24, // 24h
+    },
+  }).then((res) => res.json());
 
   return {
     movies: data?.Search || [],
@@ -41,14 +38,12 @@ export const getMovies = async (
 };
 
 export const getMovie = async (id: string): Promise<MovieResp> => {
-  const data: MovieResp = await authFetch(
-    `${process.env.SERVER_URL}/movies/${id}`,
-    {
-      next: {
-        revalidate: 7 * 24 * 60 * 60, // 7d
-      },
-    }
-  ).then((resp) => {
+  const data: MovieResp = await authFetch(`/movies/${id}`, {
+    cache: "force-cache",
+    next: {
+      revalidate: 60 * 60 * 24, // 24h
+    },
+  }).then((resp) => {
     if (resp.ok) {
       return resp.json();
     }
@@ -62,8 +57,9 @@ export const getRecommendedMovies = async (
   imdbId: string
 ): Promise<MovieResp[]> => {
   const data: MovieResp[] = await authFetch(
-    `${process.env.SERVER_URL}/movies/recommendations/${imdbId}`,
+    `/movies/recommendations/${imdbId}`,
     {
+      cache: "force-cache",
       next: {
         revalidate: 60 * 60 * 24, // 24h
       },
@@ -74,14 +70,12 @@ export const getRecommendedMovies = async (
 };
 
 export const getAiReview = async (imdbId: string): Promise<AiReview> => {
-  const data: AiReview = await authFetch(
-    `${process.env.SERVER_URL}/movies/review/${imdbId}`,
-    {
-      next: {
-        revalidate: 60 * 60 * 24, // 24h
-      },
-    }
-  ).then((res) => res.json());
+  const data: AiReview = await authFetch(`/movies/review/${imdbId}`, {
+    cache: "force-cache",
+    next: {
+      revalidate: 60 * 60 * 24, // 24h
+    },
+  }).then((res) => res.json());
 
   return data;
 };

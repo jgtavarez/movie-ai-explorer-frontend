@@ -1,6 +1,6 @@
-import { getUserRecommendedMovies } from "../../../../../actions/user";
-import { SparkleIcon } from "../../../../../components/icon";
-import { MovieCard } from "../../../../../components/MovieCard";
+import { SparkleIcon } from "@/components/icon";
+import { MovieCard } from "@/components/MovieCard";
+import { getUserRecommendedMovies } from "@/lib/queries/user";
 
 export default async function UserRecommendations() {
   const userRecommendedMovies = await getUserRecommendedMovies();

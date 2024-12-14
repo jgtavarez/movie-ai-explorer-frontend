@@ -1,7 +1,7 @@
+import { ArrowIcon } from "@/components/icon";
+import { getAllBlogs } from "@/lib/queries/blogs";
 import Image from "next/image";
 import Link from "next/link";
-import { getAllBlogs } from "../../../../../actions/blogs";
-import { ArrowIcon } from "../../../../../components/icon";
 
 export const LatestBlogsSection = async () => {
   const blogs = await getAllBlogs();

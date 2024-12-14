@@ -64,7 +64,7 @@ Most relevant files and directories are:
 
 Push to **main** branch deploy to `PROD` via AWS Amplify
 
-- Deploy to [PROD](https://main.d1ugsktwkzh3x3.amplifyapp.com/)
+- Deploy to [PROD]
 
 # Getting started 💥
 

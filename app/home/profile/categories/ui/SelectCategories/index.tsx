@@ -1,21 +1,17 @@
 "use client";
+import { Button } from "@/components/ui";
+import { Category } from "@/interfaces/entities/Category";
+import { updateUser } from "@/lib/actions/user";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
-import { Category } from "../../../../../../interfaces/entities/Category";
-import {
-  UpdateUserInput,
-  User,
-} from "../../../../../../interfaces/entities/User";
-import { Button } from "../../../../../../components/ui";
 
 interface Props {
   categories: Category[];
   selected: string[];
-  action: (updateUserInput: UpdateUserInput) => Promise<User>;
 }
 
-export const SelectCategories = ({ categories, selected, action }: Props) => {
+export const SelectCategories = ({ categories, selected }: Props) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] =
@@ -34,7 +30,7 @@ export const SelectCategories = ({ categories, selected, action }: Props) => {
     <form
       action={() => {
         startTransition(async () => {
-          await action({ categories: selectedCategories });
+          await updateUser({ categories: selectedCategories });
           router.push("/home/profile");
         });
       }}

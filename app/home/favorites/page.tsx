@@ -1,9 +1,9 @@
-import { getFavorites } from "../../../actions/favorites";
-import { Alert } from "../../../components/Alert";
-import { CardGrid } from "../../../components/layouts/CardGrid";
-import { Container } from "../../../components/layouts/Container";
-import { Search } from "../../../components/Search";
+import { Container } from "@/components/layouts/Container";
+import { Search } from "@/components/Search";
+import { getFavorites } from "@/lib/queries/favorites";
 import { FavoriteCard } from "./ui/FavoriteCard";
+import { CardGrid } from "@/components/layouts/CardGrid";
+import { Alert } from "@/components/Alert";
 import { NoFavorites } from "./ui/NoFavorites";
 
 export default async function FavoritesPage({

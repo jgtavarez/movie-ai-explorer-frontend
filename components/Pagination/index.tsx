@@ -1,7 +1,7 @@
 "use client";
+import { usePagination } from "@/hooks/usePagination";
 import clsx from "clsx";
 import Link from "next/link";
-import { usePagination } from "../../hooks/usePagination";
 
 interface Props {
   totalResults: number;
