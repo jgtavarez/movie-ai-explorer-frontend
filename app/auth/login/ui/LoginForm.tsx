@@ -1,9 +1,9 @@
 "use client";
 import { useActionState } from "react";
 import Link from "next/link";
-import { login } from "@/actions/auth/login";
 import { ErrorsList } from "@/components/ErrorsList";
 import { Button, Input, Label } from "@/components/ui";
+import { login } from "@/lib/actions/auth/login";
 
 export const LoginForm = () => {
   const [state, action, pending] = useActionState(login, undefined);

@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { SecondaryColumn } from "./ui/SecondaryColumn";
 import { Metadata } from "next";
-import { getMovie } from "../../../../actions/movies";
-import { Breadcrumb } from "../../../../components/Breadcrumb";
 import { Suspense } from "react";
+import { LoadingIcon } from "@/components/icon";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { SecondaryColumn } from "./ui/SecondaryColumn";
 import AiReview from "./ui/AiReview";
 import RecommendedMovies from "./ui/RecommendedMovies";
-import { LoadingIcon } from "@/components/icon";
+import { getMovie } from "@/lib/queries/movies";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -37,9 +37,9 @@ const AiLazySectionLoading = () => (
   </div>
 );
 
-export default async function MoviePage(props: Props) {
-  const params = await props.params;
-  const movie = await getMovie(params.id);
+export default async function MoviePage({ params }: Props) {
+  const movieId = (await params).id;
+  const movie = await getMovie(movieId);
 
   return (
     <section className="pt-10 sm:pt-16">

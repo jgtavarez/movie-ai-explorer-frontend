@@ -1,4 +1,4 @@
-import { scoreToStars } from "../../../../../../../lib/math";
+import { scoreToStars } from "@/lib/math";
 import { GenerateStars } from "./GenerateStars";
 
 interface Props {

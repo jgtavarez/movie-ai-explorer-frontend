@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Button } from "../../../../../components/ui";
-import { getUser } from "../../../../../actions/user";
 import { ProfileAvatar } from "./ProfileAvatar";
 import { CategorySection } from "./CategorySection";
 import { SignOut } from "./SignOut";
+import { getUser } from "@/lib/queries/user";
+import { Button } from "@/components/ui";
 
 export const ProfileCard = async () => {
   const user = await getUser();

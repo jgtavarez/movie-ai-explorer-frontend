@@ -1,4 +1,4 @@
-import { getUser } from "../../../../../../actions/user";
+import { getUser } from "@/lib/queries/user";
 
 export const CategorySection = async () => {
   const user = await getUser();

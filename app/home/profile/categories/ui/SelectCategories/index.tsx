@@ -1,13 +1,10 @@
 "use client";
+import { Button } from "@/components/ui";
+import { Category } from "@/interfaces/entities/Category";
+import { UpdateUserInput, User } from "@/interfaces/entities/User";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
-import { Category } from "../../../../../../interfaces/entities/Category";
-import {
-  UpdateUserInput,
-  User,
-} from "../../../../../../interfaces/entities/User";
-import { Button } from "../../../../../../components/ui";
 
 interface Props {
   categories: Category[];

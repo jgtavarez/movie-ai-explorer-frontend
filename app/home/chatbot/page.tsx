@@ -1,4 +1,4 @@
-import { verifySession } from "../../../lib/auth";
+import { verifySession } from "@/lib/auth";
 import ChatbotClient from "./ui/Client";
 
 export default async function ChatbotHome() {

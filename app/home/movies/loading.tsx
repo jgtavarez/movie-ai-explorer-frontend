@@ -1,9 +1,8 @@
-import { CardGrid } from "../../../components/layouts/CardGrid";
-import { Container } from "../../../components/layouts/Container";
-import { SkeletonCard } from "../../../components/SkeletonCard";
+import { CardGrid } from "@/components/layouts/CardGrid";
+import { Container } from "@/components/layouts/Container";
+import { SkeletonCard } from "@/components/SkeletonCard";
 
 export default function Loading() {
-
   return (
     <Container>
       <CardGrid>

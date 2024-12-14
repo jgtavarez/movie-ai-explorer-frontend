@@ -1,4 +1,3 @@
-"use server";
 import { Blog } from "@/interfaces/entities/Blog";
 import { notFound } from "next/navigation";
 
@@ -20,9 +19,9 @@ export const getAllBlogsSlugs = async (): Promise<string[]> => {
 };
 
 export const getAllBlogs = async (): Promise<Blog[]> => {
-  const data: Blog[] = await fetch(`${process.env.CLIENT_URL}/posts.json`).then(
-    (res) => res.json()
-  );
+  const data: Blog[] = await fetch(`${process.env.CLIENT_URL}/posts.json`, {
+    cache: "force-cache",
+  }).then((res) => res.json());
 
   return data;
 };

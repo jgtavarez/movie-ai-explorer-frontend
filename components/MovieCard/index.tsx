@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MovieImage } from "../MovieImage";
-import { MovieSearch } from "../../interfaces/api";
+import { MovieSearch } from "@/interfaces/api";
 
 interface Props {
   movie: MovieSearch;
@@ -12,6 +12,7 @@ export const MovieCard = ({ movie }: Props) => {
       {/* Image */}
       <div className="overflow-hidden rounded-md bg-gray-300 transition-all hover:scale-105">
         <Link
+          prefetch={true}
           className="relative block aspect-square"
           href={`/home/movies/${movie.imdbID}`}
         >

@@ -1,5 +1,5 @@
 "use client"; // -> next cannot handle streams in server actions natively
-import { ChatBotParams } from "../../interfaces/ai";
+import { ChatBotParams } from "@/interfaces/ai";
 
 export const chatBotApi = async function* (
   { prompt }: ChatBotParams,

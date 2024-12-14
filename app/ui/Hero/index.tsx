@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Button } from "../../../components/ui";
 import Image from "next/image";
+import { Button } from "@/components/ui";
 
 export const Hero = () => {
   return (

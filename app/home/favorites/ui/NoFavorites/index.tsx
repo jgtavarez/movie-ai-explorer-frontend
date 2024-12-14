@@ -1,6 +1,6 @@
+import { NoDataIcon } from "@/components/icon";
+import { Button } from "@/components/ui";
 import Link from "next/link";
-import { Button } from "../../../../../components/ui";
-import { NoDataIcon } from "../../../../../components/icon";
 
 export const NoFavorites = () => {
   return (

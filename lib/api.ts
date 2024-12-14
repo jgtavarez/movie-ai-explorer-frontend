@@ -14,7 +14,7 @@ export async function authFetch(
 ): Promise<Response> {
   const token = (await verifySession()).jwt;
 
-  const authInit: RequestInit = {
+  const baseRequest: RequestInit = {
     ...init,
     headers: {
       ...init?.headers,
@@ -23,5 +23,9 @@ export async function authFetch(
     },
   };
 
-  return fetch(input, authInit);
+  // Set baseURL
+  const baseURL =
+    typeof input === "string" ? `${process.env.SERVER_URL}${input}` : input;
+
+  return fetch(baseURL, baseRequest);
 }

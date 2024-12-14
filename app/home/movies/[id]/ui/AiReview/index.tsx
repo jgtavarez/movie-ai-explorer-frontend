@@ -1,4 +1,4 @@
-import { getAiReview } from "../../../../../../actions/movies";
+import { getAiReview } from "@/lib/queries/movies";
 import { GenerateStars } from "../SecondaryColumn/Rating/GenerateStars";
 
 interface Props {

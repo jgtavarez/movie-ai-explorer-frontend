@@ -1,6 +1,6 @@
+import { verifySession } from "@/lib/auth";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { verifySession } from "../../lib/auth";
 
 export default async function AuthLayout({
   children,

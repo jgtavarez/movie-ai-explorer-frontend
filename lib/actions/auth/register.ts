@@ -52,12 +52,7 @@ export async function register(state: any, formData: FormData): Promise<any> {
       ...validatedFields.data,
     });
     await createSession({ id: user.id, jwt });
-    redirect("/home/profile/categories");
   } catch (error: any) {
-    if (error?.message === "NEXT_REDIRECT") {
-      throw error;
-    }
-
     const dataError = error.response.data as DataError;
     const errorMessages = Array.isArray(dataError.message)
       ? dataError.message
@@ -69,6 +64,8 @@ export async function register(state: any, formData: FormData): Promise<any> {
       },
     };
   }
+
+  redirect("/home/profile/categories");
 }
 
 export const registerApiCall = async (

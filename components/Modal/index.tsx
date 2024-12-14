@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { DeleteIcon } from "../icon/DeleteIcon";
+import { DeleteIcon } from "../icon";
 
 interface Props {
   title: string;

@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import { chatBotApi } from "../../../../../actions/ai";
+import { chatBotApi } from "@/lib/actions/ai";
+import { Container } from "@/components/layouts/Container";
+import { Button, Input } from "@/components/ui";
 import { Message } from "../Message";
-import { Container } from "../../../../../components/layouts/Container";
-import { Button, Input } from "../../../../../components/ui";
 
 export default function ChatbotClient({
   url,

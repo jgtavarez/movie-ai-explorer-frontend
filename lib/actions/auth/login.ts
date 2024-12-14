@@ -28,12 +28,7 @@ export async function login(state: any, formData: FormData): Promise<any> {
   try {
     const { jwt, user } = await loginApiCall({ ...validatedFields.data });
     await createSession({ id: user.id, jwt });
-    redirect("/home");
   } catch (error: any) {
-    if (error?.message === "NEXT_REDIRECT") {
-      throw error;
-    }
-
     const dataError = error.response.data as DataError;
     const errorMessages = Array.isArray(dataError.message)
       ? dataError.message
@@ -45,6 +40,8 @@ export async function login(state: any, formData: FormData): Promise<any> {
       },
     };
   }
+
+  redirect("/home");
 }
 
 export const loginApiCall = async (

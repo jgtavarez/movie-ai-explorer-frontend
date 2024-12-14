@@ -1,6 +1,7 @@
-import { getCategories } from "@/actions/categories";
+import { getCategories } from "@/lib/queries/categories";
 import { SelectCategories } from "./ui/SelectCategories";
-import { getUser, updateUser } from "@/actions/user";
+import { getUser } from "@/lib/queries/user";
+import { updateUser } from "@/lib/actions/user";
 
 export default async function CategoriesPage() {
   const categories = await getCategories();

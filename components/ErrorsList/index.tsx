@@ -11,6 +11,7 @@ export const ErrorsList = ({ errors }: Props) => {
             errors.length > 1 ? "list-disc" : "list-none"
           }`}
           key={error}
+          aria-live="polite"
         >
           {error}
         </li>

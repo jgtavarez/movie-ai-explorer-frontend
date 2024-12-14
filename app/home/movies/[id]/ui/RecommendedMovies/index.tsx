@@ -1,6 +1,6 @@
-import { getRecommendedMovies } from "../../../../../../actions/movies";
-import { SparkleIcon } from "../../../../../../components/icon";
-import { MovieCard } from "../../../../../../components/MovieCard";
+import { SparkleIcon } from "@/components/icon";
+import { MovieCard } from "@/components/MovieCard";
+import { getRecommendedMovies } from "@/lib/queries/movies";
 
 interface Props {
   imdbId: string;

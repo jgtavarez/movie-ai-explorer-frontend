@@ -1,6 +1,6 @@
+import { Header } from "@/components/Header";
+import { verifySession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Header } from "../../components/Header";
-import { verifySession } from "../../lib/auth";
 
 export default async function HomeLayout({
   children,

@@ -1,9 +1,6 @@
-import { getAllBlogs } from "@/actions/blogs";
 import { Container } from "@/components/layouts/Container";
 import { BlogCard } from "./ui/BlogCard";
-
-// Blogs fetch is not a dynamic API so we serve as Static
-// export const dynamic = "force-static";
+import { getAllBlogs } from "@/lib/queries/blogs";
 
 export default async function BlogsPage() {
   const blogs = await getAllBlogs();

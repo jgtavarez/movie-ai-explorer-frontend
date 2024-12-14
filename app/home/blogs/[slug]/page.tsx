@@ -1,5 +1,5 @@
+import { getAllBlogsSlugs, getBlog } from "@/lib/queries/blogs";
 import { Metadata } from "next";
-import { getAllBlogsSlugs, getBlog } from "@/actions/blogs";
 import { RenderBlog } from "./ui/RenderBlog";
 
 interface Props {
@@ -21,10 +21,10 @@ export async function generateStaticParams() {
 }
 
 // Set Metadata
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = (await params).slug;
   try {
-    const blog = await getBlog(params.slug);
+    const blog = await getBlog(slug);
 
     return {
       title: blog.title,
