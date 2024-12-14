@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPage({ params }: Props) {
-  const slug = (await params).slug;
+  const slug = decodeURIComponent((await params).slug);
   const blog = await getBlog(slug);
 
   return <RenderBlog blog={blog} />;

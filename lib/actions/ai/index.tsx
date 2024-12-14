@@ -1,18 +1,11 @@
 "use client"; // -> next cannot handle streams in server actions natively
 import { ChatBotParams } from "@/interfaces/ai";
 
-export const chatBotApi = async function* (
-  { prompt }: ChatBotParams,
-  { url, jwt }: { url: string; jwt: string }
-) {
+export const chatBotApi = async function* ({ prompt }: ChatBotParams) {
   try {
-    const data = await fetch(`${url}/ai/chatbot`, {
+    const data = await fetch("/api/ai/chatbot", {
       method: "POST",
       body: JSON.stringify({ prompt }),
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-        "Content-Type": "application/json",
-      },
     });
 
     if (!data.ok) {

@@ -1,17 +1,10 @@
 "use client";
 import { useState } from "react";
-import { chatBotApi } from "@/lib/actions/ai";
-import { Container } from "@/components/layouts/Container";
 import { Button, Input } from "@/components/ui";
 import { Message } from "../Message";
+import { chatBotApi } from "@/lib/actions/ai";
 
-export default function ChatbotClient({
-  url,
-  jwt,
-}: {
-  url: string;
-  jwt: string;
-}) {
+export default function ChatbotClient() {
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -27,7 +20,7 @@ export default function ChatbotClient({
     setIsLoading(true);
     setMessages((prev) => [...prev, { text: originalPrompt, isUser: true }]);
 
-    const stream = chatBotApi({ prompt: originalPrompt }, { url, jwt });
+    const stream = chatBotApi({ prompt: originalPrompt });
 
     setMessages((messages) => [
       ...messages,
@@ -46,60 +39,43 @@ export default function ChatbotClient({
   };
 
   return (
-    <Container>
+    <>
+      {/* Render Messages */}
       <div
-        className="w-full rounded-lg border border-[#e5e7eb] p-6 dark:bg-gray-900"
+        className="pr-4 h-[500px]"
         style={{
-          boxShadow: "0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05)",
+          minWidth: "100%",
+          maxHeight: "500px",
+          overflowY: "auto",
         }}
       >
-        {/* Header */}
-        <div className="flex flex-col space-y-1.5 pb-6">
-          <h2 className="font-semibold text-lg tracking-tight title-theme">
-            Chatbot
-          </h2>
-          <p className="text-sm text-[#6b7280] leading-3 description-theme">
-            Powered by AI
-          </p>
-        </div>
+        {messages.map((message, index) => (
+          <Message key={index} message={message} />
+        ))}
+      </div>
 
-        {/* Render Messages */}
-        <div
-          className="pr-4 h-[500px]"
-          style={{
-            minWidth: "100%",
-            maxHeight: "500px",
-            overflowY: "auto",
-          }}
-        >
-          {messages.map((message, index) => (
-            <Message key={index} message={message} />
-          ))}
-        </div>
-
-        {/* Actions */}
-        <div className="flex items-center pt-0">
-          <div className="flex items-center justify-center w-full space-x-2">
-            <Input
-              disabled={isLoading}
-              autoComplete="false"
-              type="text"
-              placeholder="Type your message"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              maxLength={400}
-            />
-            <Button
-              text="Send"
-              disabled={isLoading || !prompt}
-              onClick={handlePost}
-              style={{
-                maxWidth: "6rem",
-              }}
-            />
-          </div>
+      {/* Actions */}
+      <div className="flex items-center pt-0">
+        <div className="flex items-center justify-center w-full space-x-2">
+          <Input
+            disabled={isLoading}
+            autoComplete="false"
+            type="text"
+            placeholder="Type your message"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            maxLength={400}
+          />
+          <Button
+            text="Send"
+            disabled={isLoading || !prompt}
+            onClick={handlePost}
+            style={{
+              maxWidth: "6rem",
+            }}
+          />
         </div>
       </div>
-    </Container>
+    </>
   );
 }
