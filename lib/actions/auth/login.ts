@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 import { AuthResponse, LoginInput } from "@/interfaces/auth";
+import { authFetch, DataError, handleFetchError } from "@/lib/api";
 import { createSession } from "@/lib/auth";
-import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -47,6 +47,15 @@ export async function login(state: any, formData: FormData): Promise<any> {
 export const loginApiCall = async (
   loginInput: LoginInput
 ): Promise<AuthResponse> => {
-  const response = await baseApi.post("/auth/login", loginInput);
-  return response.data;
+  const data = await authFetch(`/auth/login`, {
+    method: "POST",
+    body: JSON.stringify({ ...loginInput }),
+  }).then((resp) => {
+      if (resp.ok) {
+        return resp.json();
+      }
+      return handleFetchError(resp);
+    });
+
+  return data;
 };

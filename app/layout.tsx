@@ -20,18 +20,20 @@ export const metadata: Metadata = {
     "Movie Explorer with AI Enhancements - Search, discover and explore movies with AI-powered features",
 };
 
-export default async function RootLayout(
-  {
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>
-) {
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const themeCookie = (await cookies()).get("theme");
   const theme = themeCookie?.value || "light";
 
   return (
     <html lang="en" className={theme === "dark" ? "dark" : ""}>
+      {/* Add react-scan script */}
+      <head>
+        {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" async /> */}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-800`}
       >
