@@ -11,46 +11,43 @@
 
 Core technologies used..
 
-- [Next.js 14](https://nextjs.org) with App Router for server-first architecture
+- [Next.js 15](https://nextjs.org) & [React 19](https://react.dev)
 - [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for the requests
-- [TailwindCss](https://tailwindcss.com) for styles 
+- [TailwindCSS](https://tailwindcss.com) for styles 
 - [Zod](https://zod.dev) for robust type validation
 - [Jose](https://www.npmjs.com/package/jose) for encryption, decryption, jwt and cookies
 
 # Project Structure 📐
 
-The project structure is based on the new [Next App Router](https://nextjs.org/docs/app) folder structure.
+The project structure is based on the new [Next App Router](https://nextjs.org/docs/app/getting-started/project-structure#store-project-files-outside-of-app) folder structure. This strategy stores all application code in shared folders in the root of the project and keeps the `/app` directory purely for routing purposes.
+
 Most relevant files and directories are:
 
 ```v
-   ├── actions                          # All app server actions
-      ├── ai
-      ├── auth
-      ├── blogs
-      ├── categories
-      ├── favorites
-      ├── movies
-      └── user
    ├── app                             # App router
-      ├── auth                         # /auth route
+      ├── api                          # App route handler
+      └── auth                         # /auth route
          ├── login                     # /auth/login page
          ├── register                  # /auth/register page
          └── layout.tsx                # Auth layout
-      ├── home                         # /home route
+      └── home                         # /home route
          └── example                   # Example module (all follows the same)
             └── [id]                   # /example/:id page
-            └── ui                     # Specific components for this page
+            └── ui                     # Specific UI components for this route
             └── page.ts                # /example page
       ├── layout.tsx
       └── page.tsx
-   ├── components                      # Reusable components
+   └── components                      # Reusable components
       ├── (...rest)
       ├── icons                        # Components icons
       ├── layouts                      # Grids and layouts
       └── ui                           # Small html tags
    ├── hooks                           # Custom and reusable hooks
    ├── interfaces                      # Interfaces
-   ├── lib                             # Helper functions
+   └── lib                             # Helper functions
+      ├── actions                      # All app server actions
+      ├── queries                      # All app fetch (GET)
+      └── (...rest)
    ├── .env                            # Enviroments variables for local
    ├── next.config.js                  # Next.js configuration file
    ├── package.json                    # Node.js dependencies
@@ -122,22 +119,25 @@ This application leverages the [Server and Client Composition Patterns](https://
 - **File-Based Routing**:  
   The application follows the [Routing Files pattern](https://nextjs.org/docs/app/getting-started/project-structure#routing-files), organizing related pages into groups and implementing dedicated files for key states:
 
+  - **`layout.tsx`**: Used to define a layout in your Next.js application.
+  - **`page.tsx`**: The page file allows you to define UI that is unique to a route.
   - **`loading.tsx`**: Displays a loading state while data or the page is being fetched or generated.
   - **`notfound.tsx`**: Handles 404 errors gracefully for pages not found.
   - **`error.tsx`**: Manages unexpected errors within specific routes.
+  - **`route.ts`**: Allow to create custom request handlers for a given route using the Web Request and Response APIs.
 
 - **Data Sharing Between Components**:  
-  Im not a big fan on `useContext` or other client-side state management tools in server-first applications even Next [dont recommend it](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#sharing-data-between-components), the application takes advantage of [fetch](https://nextjs.org/docs/14/app/api-reference/functions/fetch) and caching. Data fetched for a page is shared seamlessly across components without duplicating requests cause in next14 cache is stored by default. This approach avoids the need to move components to the client unnecessarily using.
+  Im not a big fan on `useContext` or other client-side state management tools in server-first applications even Next [dont recommend it](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#sharing-data-between-components), the application takes advantage of [fetch](https://nextjs.org/docs/app/api-reference/functions/fetch) and caching. Data fetched for a page is shared seamlessly across components without duplicating requests. This approach avoids the need to move components to the client unnecessarily using.
   By reusing cached data, the application improves performance and reduces the overhead of additional client-side state management useContext, useReducer, useState, useEffect.
 
 - **Server Actions**:
 
-The application employs server actions for handling HTTP requests and others server-side logic. These actions encapsulate business logic and are invoked:
+The application employs [server actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) for handling mutation requests. These actions encapsulate business logic and are invoked:
 Directly in server-side components making it asynchronous and in event handlers in client-side components, enabling  integration of server-side functionality with client-side interactivity when necessary.
 
 - **Static Generation**:
 
-Blog pages are created in the build time and are rendered on the server.
+Blog pages are created in the build time using [Incremental Static Regeneration (ISR)](https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration)
 
 ---
 

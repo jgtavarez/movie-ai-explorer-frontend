@@ -8,12 +8,6 @@ export const InitOptions: Options = {
   skip: false,
 };
 
-export type FetchError = Error & {
-  response?: {
-    data?: DataError; // o cualquier estructura de error que necesites
-  };
-};
-
 export interface DataError {
   message: string[] | string;
   error: string;
@@ -45,7 +39,7 @@ export async function authFetch(
 export async function handleFetchError(resp: Response) {
   const errorData = await resp.json();
 
-  const customError = new Error("Error en la petición") as Error & {
+  const customError = new Error("Something went wrong") as Error & {
     response?: { data?: unknown };
   };
 
