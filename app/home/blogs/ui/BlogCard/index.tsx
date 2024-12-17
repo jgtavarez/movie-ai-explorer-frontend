@@ -24,7 +24,7 @@ export const BlogCard = ({ blog }: Props) => {
         <div className="flex items-center space-x-4"></div>
         <Link
           href={`/home/blogs/${blog.slug}`}
-          className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
+          className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline title-theme"
         >
           Read more
           <ArrowIcon />

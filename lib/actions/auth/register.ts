@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 import { AuthResponse, RegisterInput } from "@/interfaces/auth";
+import { authFetch, DataError, handleFetchError } from "@/lib/api";
 import { createSession } from "@/lib/auth";
-import { baseApi, DataError } from "@/lib/axios";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -71,6 +71,15 @@ export async function register(state: any, formData: FormData): Promise<any> {
 export const registerApiCall = async (
   registerInput: RegisterInput
 ): Promise<AuthResponse> => {
-  const response = await baseApi.post("/auth/register", registerInput);
-  return response.data;
+  const data = await authFetch(`/auth/login`, {
+      method: "POST",
+      body: JSON.stringify({ ...registerInput }),
+    }).then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        }
+        return handleFetchError(resp);
+      });
+  
+    return data;
 };

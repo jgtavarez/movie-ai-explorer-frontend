@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Button, Input } from "@/components/ui";
 import { Message } from "../Message";
 import { chatBotApi } from "@/lib/actions/ai";
 
 export default function ChatbotClient() {
+  const [isPending, startTransition] = useTransition();
   const [prompt, setPrompt] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       text: "Hi! I'm your assistant for movies and TV series. Ask me about films, genres, directors, actors, or get personalized recommendations. Let’s dive into the world of entertainment!",
@@ -14,10 +14,9 @@ export default function ChatbotClient() {
     },
   ]);
 
-  const handlePost = async () => {
+  const handlePost = () => {
     const originalPrompt = prompt;
     setPrompt("");
-    setIsLoading(true);
     setMessages((prev) => [...prev, { text: originalPrompt, isUser: true }]);
 
     const stream = chatBotApi({ prompt: originalPrompt });
@@ -27,15 +26,15 @@ export default function ChatbotClient() {
       { text: "Loading...", isUser: false },
     ]);
 
-    for await (const text of stream) {
-      setMessages((prev) => {
-        const newMessages = [...prev];
-        newMessages[newMessages.length - 1].text = text;
-        return newMessages;
-      });
-    }
-
-    setIsLoading(false);
+    startTransition(async () => {
+      for await (const text of stream) {
+        setMessages((prev) => {
+          const newMessages = [...prev];
+          newMessages[newMessages.length - 1].text = text;
+          return newMessages;
+        });
+      }
+    });
   };
 
   return (
@@ -58,7 +57,7 @@ export default function ChatbotClient() {
       <div className="flex items-center pt-0">
         <div className="flex items-center justify-center w-full space-x-2">
           <Input
-            disabled={isLoading}
+            disabled={isPending}
             autoComplete="false"
             type="text"
             placeholder="Type your message"
@@ -68,7 +67,7 @@ export default function ChatbotClient() {
           />
           <Button
             text="Send"
-            disabled={isLoading || !prompt}
+            disabled={isPending || !prompt}
             onClick={handlePost}
             style={{
               maxWidth: "6rem",

@@ -8,6 +8,18 @@ export const InitOptions: Options = {
   skip: false,
 };
 
+export type FetchError = Error & {
+  response?: {
+    data?: DataError; // o cualquier estructura de error que necesites
+  };
+};
+
+export interface DataError {
+  message: string[] | string;
+  error: string;
+  statusCode: number;
+}
+
 export async function authFetch(
   input: RequestInfo,
   init?: RequestInit
@@ -28,4 +40,16 @@ export async function authFetch(
     typeof input === "string" ? `${process.env.SERVER_URL}${input}` : input;
 
   return fetch(baseURL, baseRequest);
+}
+
+export async function handleFetchError(resp: Response) {
+  const errorData = await resp.json();
+
+  const customError = new Error("Error en la petición") as Error & {
+    response?: { data?: unknown };
+  };
+
+  customError.response = { data: errorData };
+
+  throw customError;
 }
